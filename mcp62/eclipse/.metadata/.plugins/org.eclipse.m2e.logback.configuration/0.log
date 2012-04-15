@@ -1,0 +1,41 @@
+2012-04-15 18:40:34,842 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-15 18:40:46,116 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-egit does not contain lifecycle mapping metadata
+2012-04-15 18:40:46,119 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-cvs does not contain lifecycle mapping metadata
+2012-04-15 18:40:46,121 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subversive does not contain lifecycle mapping metadata
+2012-04-15 18:40:46,123 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subclipse does not contain lifecycle mapping metadata
+2012-04-15 18:40:46,125 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.maven-runtime-3.0.3 does not contain lifecycle mapping metadata
+2012-04-15 18:40:46,146 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.codehaus.groovy.m2eclipse does not contain lifecycle mapping metadata
+2012-04-15 18:40:55,901 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\CraftBukkit\pom.xml.
+2012-04-15 18:41:02,826 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /craftbukkit/src/main/java
+2012-04-15 18:41:02,826 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\CraftBukkit\pom.xml.
+2012-04-15 18:41:02,833 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /craftbukkit/src/main/resources
+2012-04-15 18:41:02,835 [Worker-5] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /craftbukkit/src/test/java
+2012-04-15 18:41:02,941 [Worker-5] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Project import completed 9 sec
+2012-04-15 18:41:03,015 [Worker-1] INFO  o.e.m.c.u.i.UpdateConfigurationJob - Update started
+2012-04-15 18:41:03,015 [Worker-1] INFO  o.e.m.c.u.i.UpdateConfigurationJob - Update completed: 0 sec
+2012-04-15 18:41:03,084 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\CraftBukkit\pom.xml.
+2012-04-15 18:41:19,001 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\CraftBukkit\pom.xml.
+2012-04-15 18:41:19,576 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-15 18:41:19,579 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-15 18:41:19,697 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-15 18:41:19,697 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\CraftBukkit\src\test\resources
+2012-04-15 18:42:20,093 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-15 18:42:20,097 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-15 18:42:20,098 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-15 18:42:20,098 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\CraftBukkit\src\test\resources
+2012-04-15 18:49:33,514 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 538675 ms
+2012-04-15 18:58:01,536 [Worker-3] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-15 18:58:05,235 [Worker-3] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 3702 ms
+2012-04-15 19:05:13,822 [Worker-11] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-15 19:05:18,927 [Worker-11] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 5109 ms
+2012-04-15 19:43:31,535 [Worker-3] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-15 19:44:00,132 [Worker-3] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 28842 ms
+2012-04-15 20:05:38,981 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-15 20:05:49,235 [Worker-4] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 10270 ms
+2012-04-15 20:28:41,574 [Worker-5] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-15 20:28:50,952 [Worker-5] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 9383 ms
+2012-04-15 20:29:52,208 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\CraftBukkit\pom.xml.
+2012-04-15 20:29:55,279 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-15 20:29:55,281 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-15 20:29:55,331 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-15 20:29:55,331 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\CraftBukkit\src\test\resources
