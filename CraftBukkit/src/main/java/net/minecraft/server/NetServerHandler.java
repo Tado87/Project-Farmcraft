@@ -9,15 +9,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.ChunkCompressionThread;
 import org.bukkit.Location;
 import org.bukkit.command.CommandException;
-import org.bukkit.conversations.Conversable;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftInventoryView;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
@@ -43,10 +40,10 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.event.Event.Result;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.Recipe;
 // CraftBukkit end
@@ -398,7 +395,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
 
                 AxisAlignedBB axisalignedbb = this.player.boundingBox.clone().grow((double) f4, (double) f4, (double) f4).a(0.0D, -0.55D, 0.0D);
 
-                if (!this.minecraftServer.allowFlight && !this.player.itemInWorldManager.isCreative() && !worldserver.b(axisalignedbb)) {
+                if (!this.minecraftServer.allowFlight && !this.player.abilities.canFly && !worldserver.b(axisalignedbb)) { // CraftBukkit - check abilities instead of creative mode
                     if (d9 >= -0.03125D) {
                         ++this.g;
                         if (this.g > 80) {
@@ -418,90 +415,6 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
             }
         }
     }
-
-    // CraftBukkit start - temporary initial join teleport function, houses hacky entity fix.
-    public void initialJoin(double d0, double d1, double d2, float f, float f1) {
-        Location to = new Location(this.getPlayer().getWorld(), d0, d1, d2, f, f1);
-
-        this.teleport(to);
-
-        Timer timer = new Timer();
-        final ArrayList<Entity> nearby = new ArrayList<Entity>();
-        // Start inline nearby entities
-        AxisAlignedBB axisalignedbb = player.boundingBox.grow(100, 100, 100);
-        int i = MathHelper.floor((axisalignedbb.a - 2.0D) / 16.0D);
-        int j = MathHelper.floor((axisalignedbb.d + 2.0D) / 16.0D);
-        int k = MathHelper.floor((axisalignedbb.c - 2.0D) / 16.0D);
-        int l = MathHelper.floor((axisalignedbb.f + 2.0D) / 16.0D);
-
-        for (int i1 = i; i1 <= j; ++i1) {
-            for (int j1 = k; j1 <= l; ++j1) {
-                if (player.world.chunkProvider.isChunkLoaded(i1, j1)) {
-                    player.world.getChunkAt(i1, j1).a(player, axisalignedbb, nearby);
-                }
-            }
-        }
-        // End inline nearby entities
-        for (Object entity : nearby) {
-            if (entity instanceof EntityLiving || entity instanceof EntityMinecart || entity instanceof EntityBoat || entity instanceof IAnimal || entity instanceof EntityPainting) {
-                player.netServerHandler.sendPacket(new Packet29DestroyEntity(((Entity) entity).id));
-           }
-        }
-
-        timer.schedule(new TimerTask(){
-            public void run() {
-                // Start inline nearby entities
-                nearby.clear();
-                AxisAlignedBB axisalignedbb = player.boundingBox.grow(100, 100, 100);
-                int i = MathHelper.floor((axisalignedbb.a - 2.0D) / 16.0D);
-                int j = MathHelper.floor((axisalignedbb.d + 2.0D) / 16.0D);
-                int k = MathHelper.floor((axisalignedbb.c - 2.0D) / 16.0D);
-                int l = MathHelper.floor((axisalignedbb.f + 2.0D) / 16.0D);
-
-                for (int i1 = i; i1 <= j; ++i1) {
-                    for (int j1 = k; j1 <= l; ++j1) {
-                        if (player.world.chunkProvider.isChunkLoaded(i1, j1)) {
-                            player.world.getChunkAt(i1, j1).a(player, axisalignedbb, nearby);
-                        }
-                    }
-                }
-                // End inline nearby entities
-                for (Object entityObject2 : nearby) {
-                    try {
-                        Entity entity = (Entity) entityObject2;
-
-                        if (entity instanceof EntityPlayer) {
-                            player.netServerHandler.sendPacket(new Packet20NamedEntitySpawn((EntityHuman) entity));
-                        } else if (entity instanceof EntityMinecart) {
-                            EntityMinecart entityminecart = (EntityMinecart) entity;
-
-                            if (entityminecart.type == 0) {
-                                player.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 10));
-                            }
-
-                            if (entityminecart.type == 1) {
-                                player.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 11));
-                            }
-
-                            if (entityminecart.type == 2) {
-                                player.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 12));
-                            }
-                        } else if (entity instanceof EntityBoat) {
-                            player.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 1));
-                        } else if (entity instanceof IAnimal) {
-                            player.netServerHandler.sendPacket(new Packet24MobSpawn((EntityLiving) entity));
-                        } else if (entity instanceof EntityEnderDragon) {
-                            player.netServerHandler.sendPacket(new Packet24MobSpawn((EntityLiving) entity));
-                        } else if (entity instanceof EntityPainting) {
-                            player.netServerHandler.sendPacket(new Packet25EntityPainting((EntityPainting) entity));
-                        }
-                    } catch (ClassCastException e) {
-                    }
-                }
-            }
-        }, 5000);
-    }
-    // CraftBukkit end
 
     public void a(double d0, double d1, double d2, float f, float f1) {
         // CraftBukkit start - Delegate to teleport(Location)
@@ -573,9 +486,9 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
                 }
             }
             // CraftBukkit end
-            this.player.R();
+            this.player.S();
         } else if (packet14blockdig.e == 5) {
-            this.player.M();
+            this.player.N();
         } else {
             boolean flag = worldserver.weirdIsOpCache = worldserver.dimension != 0 || this.minecraftServer.serverConfigurationManager.isOp(this.player.name); // CraftBukkit
             boolean flag1 = false;
@@ -618,6 +531,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
             if (packet14blockdig.e == 0) {
                 // CraftBukkit
                 if (i1 < this.server.getSpawnRadius() && !flag) {
+                    CraftEventFactory.callPlayerInteractEvent(this.player, Action.LEFT_CLICK_BLOCK, i, j, k, l, this.player.inventory.getItemInHand());
                     this.player.netServerHandler.sendPacket(new Packet53BlockChange(i, j, k, worldserver));
                 } else {
                     this.player.itemInWorldManager.dig(i, j, k, packet14blockdig.face);
@@ -827,6 +741,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
             this.player.inventory.itemInHandIndex = packet16blockitemswitch.itemInHandIndex;
         } else {
             logger.warning(this.player.name + " tried to set an invalid carried item");
+            this.disconnect("Nope!"); // CraftBukkit
         }
     }
 
@@ -981,7 +896,7 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
             if (event.isCancelled()) return;
             // CraftBukkit end
 
-            this.player.D();
+            this.player.C_();
         }
     }
 
@@ -1145,12 +1060,13 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
             InventoryView inventory = this.player.activeContainer.getBukkitView();
             SlotType type = CraftInventoryView.getSlotType(inventory, packet102windowclick.slot);
 
-            InventoryClickEvent event;
-            if (inventory instanceof CraftingInventory) {
-                Recipe recipe = ((CraftingInventory)inventory.getTopInventory()).getRecipe();
-                event = new CraftItemEvent(recipe, inventory, type, packet102windowclick.slot, packet102windowclick.button != 0, packet102windowclick.shift);
-            } else {
-                event = new InventoryClickEvent(inventory, type, packet102windowclick.slot, packet102windowclick.button != 0, packet102windowclick.shift);
+            InventoryClickEvent event = new InventoryClickEvent(inventory, type, packet102windowclick.slot, packet102windowclick.button != 0, packet102windowclick.shift);
+            Inventory top = inventory.getTopInventory();
+            if (packet102windowclick.slot == 0 && top instanceof CraftingInventory) {
+                Recipe recipe = ((CraftingInventory) top).getRecipe();
+                if (recipe != null) {
+                    event = new CraftItemEvent(recipe, inventory, type, packet102windowclick.slot, packet102windowclick.button != 0, packet102windowclick.shift);
+                }
             }
             server.getPluginManager().callEvent(event);
 
@@ -1372,6 +1288,10 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
 
     public boolean c() {
         return true;
+    }
+
+    public void a(Packet202Abilities packet202abilities) {
+        this.player.abilities.isFlying = packet202abilities.b && this.player.abilities.canFly;
     }
 
     // CraftBukkit start

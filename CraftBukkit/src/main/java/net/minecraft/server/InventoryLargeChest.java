@@ -43,7 +43,12 @@ public class InventoryLargeChest implements IInventory {
     }
 
     public InventoryHolder getOwner() {
-        return null; // Double chests technically have multiple owners, so there's no sensible way to pick one
+        return null; // This method won't be called since CraftInventoryDoubleChest doesn't defer to here
+    }
+
+    public void setMaxStackSize(int size) {
+        this.left.setMaxStackSize(size);
+        this.right.setMaxStackSize(size);
     }
     // CraftBukkit end
 
@@ -90,7 +95,7 @@ public class InventoryLargeChest implements IInventory {
     }
 
     public int getMaxStackSize() {
-        return this.left.getMaxStackSize();
+        return Math.min(this.left.getMaxStackSize(), this.right.getMaxStackSize()); // CraftBukkit - check both sides
     }
 
     public void update() {

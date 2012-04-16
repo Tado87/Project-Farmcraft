@@ -129,7 +129,7 @@ public final class CraftServer implements Server {
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private final BukkitScheduler scheduler = new CraftScheduler();
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
-    private final SimpleHelpMap helpMap = new SimpleHelpMap();
+    private final SimpleHelpMap helpMap = new SimpleHelpMap(this);
     private final StandardMessenger messenger = new StandardMessenger();
     private final PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     protected final MinecraftServer console;
@@ -222,7 +222,7 @@ public final class CraftServer implements Server {
     public void enablePlugins(PluginLoadOrder type) {
         if (type == PluginLoadOrder.STARTUP) {
             helpMap.clear();
-            helpMap.initializeGeneralTopics(this);
+            helpMap.initializeGeneralTopics();
         }
 
         Plugin[] plugins = pluginManager.getPlugins();
@@ -237,7 +237,7 @@ public final class CraftServer implements Server {
             commandMap.registerServerAliases();
             loadCustomPermissions();
             DefaultPermissions.registerCorePermissions();
-            helpMap.initializeCommands(this);
+            helpMap.initializeCommands();
         }
     }
 
@@ -424,6 +424,10 @@ public final class CraftServer implements Server {
         return this.configuration.getInt("settings.ping-packet-limit", 100);
     }
 
+    public long getConnectionThrottle() {
+        return this.configuration.getInt("settings.connection-throttle");
+    }
+
     public int getTicksPerAnimalSpawns() {
         return this.configuration.getInt("ticks-per.animal-spawns");
     }
@@ -575,13 +579,13 @@ public final class CraftServer implements Server {
             return;
         }
 
-        Set<String> keys = perms.keySet();
+        List<Permission> permsList = Permission.loadPermissions(perms, "Permission node '%s' in " + file + " is invalid", Permission.DEFAULT_PERMISSION);
 
-        for (String name : keys) {
+        for (Permission perm : permsList) {
             try {
-                pluginManager.addPermission(Permission.loadPermission(name, perms.get(name)));
-            } catch (Throwable ex) {
-                Bukkit.getServer().getLogger().log(Level.SEVERE, "Permission node '" + name + "' in server config is invalid", ex);
+                pluginManager.addPermission(perm);
+            } catch (IllegalArgumentException ex) {
+                getLogger().log(Level.SEVERE, "Permission in " + file + " was already defined", ex);
             }
         }
     }

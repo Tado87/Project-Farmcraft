@@ -77,8 +77,8 @@ public class NetLoginHandler extends NetHandler {
 
     public void a(Packet1Login packet1login) {
         this.g = packet1login.name;
-        if (packet1login.a != 28) {
-            if (packet1login.a > 28) {
+        if (packet1login.a != 29) {
+            if (packet1login.a > 29) {
                 this.disconnect("Outdated server!");
             } else {
                 this.disconnect("Outdated client!");
@@ -123,11 +123,11 @@ public class NetLoginHandler extends NetHandler {
             // CraftBukkit end
 
             netserverhandler.sendPacket(new Packet6SpawnPosition(chunkcoordinates.x, chunkcoordinates.y, chunkcoordinates.z));
+            netserverhandler.sendPacket(new Packet202Abilities(entityplayer.abilities));
             this.server.serverConfigurationManager.a(entityplayer, worldserver);
             // this.server.serverConfigurationManager.sendAll(new Packet3Chat("\u00A7e" + entityplayer.name + " joined the game.")); // CraftBukkit - message moved to join event
             this.server.serverConfigurationManager.c(entityplayer);
-            // CraftBukkit - temporary initial join teleport function, houses hacky entity fix.
-            netserverhandler.initialJoin(entityplayer.locX, entityplayer.locY, entityplayer.locZ, entityplayer.yaw, entityplayer.pitch);
+            netserverhandler.a(entityplayer.locX, entityplayer.locY, entityplayer.locZ, entityplayer.yaw, entityplayer.pitch);
             this.server.networkListenThread.a(netserverhandler);
             netserverhandler.sendPacket(new Packet4UpdateTime(entityplayer.getPlayerTime())); // CraftBukkit - add support for player specific time
             Iterator iterator = entityplayer.getEffects().iterator();

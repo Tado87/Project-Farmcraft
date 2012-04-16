@@ -18,6 +18,8 @@ public class ContainerEnchantTableSubcontainer implements IInventory {
 
     // CraftBukkit start
     public List<HumanEntity> transaction = new ArrayList<HumanEntity>();
+    public org.bukkit.entity.Player player;
+    private int maxStack = MAX_STACK;
 
     public ItemStack[] getContents() {
         return this.items;
@@ -36,7 +38,11 @@ public class ContainerEnchantTableSubcontainer implements IInventory {
     }
 
     public InventoryHolder getOwner() {
-        return null; // TODO: Enchanting tables don't really have an owner? Maybe they should?
+        return this.player;
+    }
+
+    public void setMaxStackSize(int size) {
+        maxStack = size;
     }
     // CraftBukkit end
 
@@ -102,7 +108,7 @@ public class ContainerEnchantTableSubcontainer implements IInventory {
     }
 
     public int getMaxStackSize() {
-        return 64;
+        return maxStack; // CraftBukkit
     }
 
     public void update() {

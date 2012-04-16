@@ -178,3 +178,31 @@ src/main/java/net/minecraft/server/CraftingManager.java
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2012-04-16 00:53:57.929
 !MESSAGE CatalogItem org.codehaus.groovy.m2eclipse does not contain lifecycle mapping metadata
+!SESSION 2012-04-16 15:18:18.367 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.7.0_02
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.876
+!MESSAGE NLS unused message: ReorgCorrectionsSubProcessor_no_50jre_title in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.935
+!MESSAGE NLS unused message: ReorgCorrectionsSubProcessor_no_50jre_message in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.936
+!MESSAGE NLS unused message: ReorgCorrectionsSubProcessor_50_project_compliance_description in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.937
+!MESSAGE NLS unused message: ReorgCorrectionsSubProcessor_50_workspace_compliance_description in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.938
+!MESSAGE NLS unused message: ReorgCorrectionsSubProcessor_50_compliance_changeworkspace_description in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.938
+!MESSAGE NLS unused message: ReorgCorrectionsSubProcessor_50_compliance_changeproject_description in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-04-16 15:21:23.943
+!MESSAGE NLS unused message: LocalCorrectionsSubProcessor_surroundwith_description in: org.eclipse.jdt.internal.ui.text.correction.CorrectionMessages

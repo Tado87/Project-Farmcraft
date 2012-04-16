@@ -1,8 +1,9 @@
 package net.minecraft.server;
 
+import java.util.List;
+
 // CraftBukkit start
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
@@ -44,7 +45,8 @@ public class EntityMinecart extends Entity implements IInventory {
     private double flyingY = 0.95;
     private double flyingZ = 0.95;
     public double maxSpeed = 0.4D;
-    public List<HumanEntity> transaction = new ArrayList<HumanEntity>(); // CraftBukkit
+    public List<HumanEntity> transaction = new ArrayList<HumanEntity>();
+    private int maxStack = MAX_STACK;
 
     public ItemStack[] getContents() {
         return this.items;
@@ -66,6 +68,10 @@ public class EntityMinecart extends Entity implements IInventory {
         org.bukkit.entity.Entity cart = getBukkitEntity();
         if(cart instanceof InventoryHolder) return (InventoryHolder) cart;
         return null;
+    }
+
+    public void setMaxStackSize(int size) {
+        maxStack = size;
     }
     // CraftBukkit end
 
@@ -138,13 +144,12 @@ public class EntityMinecart extends Entity implements IInventory {
 
             this.e(-this.n());
             this.d(10);
-            this.aV();
+            this.aW();
             this.setDamage(this.getDamage() + i * 10);
             if (this.getDamage() > 40) {
                 if (this.passenger != null) {
                     this.passenger.mount(this);
                 }
-
                 // CraftBukkit start
                 VehicleDestroyEvent destroyEvent = new VehicleDestroyEvent(vehicle, passenger);
                 this.world.getServer().getPluginManager().callEvent(destroyEvent);
@@ -177,7 +182,7 @@ public class EntityMinecart extends Entity implements IInventory {
 
                                 itemstack.count -= k;
                                 // CraftBukkit - include enchantments in the new itemstack
-                                EntityItem entityitem = new EntityItem(this.world, this.locX + (double) f, this.locY + (double) f1, this.locZ + (double) f2, new ItemStack(itemstack.id, k, itemstack.getData(), itemstack.getEnchantments())); 
+                                EntityItem entityitem = new EntityItem(this.world, this.locX + (double) f, this.locY + (double) f1, this.locZ + (double) f2, new ItemStack(itemstack.id, k, itemstack.getData(), itemstack.getEnchantments()));
                                 float f3 = 0.05F;
 
                                 entityitem.motX = (double) ((float) this.random.nextGaussian() * f3);
@@ -221,8 +226,12 @@ public class EntityMinecart extends Entity implements IInventory {
                     }
 
                     itemstack.count -= j;
-                    // CraftBukkit - include enchantments in the new itemstack
-                    EntityItem entityitem = new EntityItem(this.world, this.locX + (double) f, this.locY + (double) f1, this.locZ + (double) f2, new ItemStack(itemstack.id, j, itemstack.getData(), itemstack.getEnchantments()));
+                    EntityItem entityitem = new EntityItem(this.world, this.locX + (double) f, this.locY + (double) f1, this.locZ + (double) f2, new ItemStack(itemstack.id, j, itemstack.getData()));
+
+                    if (itemstack.hasTag()) {
+                        entityitem.itemStack.setTag((NBTTagCompound) itemstack.getTag().clone());
+                    }
+
                     float f3 = 0.05F;
 
                     entityitem.motX = (double) ((float) this.random.nextGaussian() * f3);
@@ -236,7 +245,7 @@ public class EntityMinecart extends Entity implements IInventory {
         super.die();
     }
 
-    public void G_() {
+    public void F_() {
         // CraftBukkit start
         double prevX = this.locX;
         double prevY = this.locY;
@@ -251,6 +260,10 @@ public class EntityMinecart extends Entity implements IInventory {
 
         if (this.getDamage() > 0) {
             this.setDamage(this.getDamage() - 1);
+        }
+
+        if (this.locY < -64.0D) {
+            this.aI();
         }
 
         if (this.k() && this.random.nextInt(4) == 0) {
@@ -313,7 +326,7 @@ public class EntityMinecart extends Entity implements IInventory {
                     flag1 = !flag;
                 }
 
-                if (((BlockMinecartTrack) Block.byId[l]).h()) {
+                if (((BlockMinecartTrack) Block.byId[l]).i()) {
                     i1 &= 7;
                 }
 
@@ -639,7 +652,7 @@ public class EntityMinecart extends Entity implements IInventory {
             int i1 = this.world.getData(i, j, k);
 
             d1 = (double) j;
-            if (((BlockMinecartTrack) Block.byId[l]).h()) {
+            if (((BlockMinecartTrack) Block.byId[l]).i()) {
                 i1 &= 7;
             }
 
@@ -748,11 +761,11 @@ public class EntityMinecart extends Entity implements IInventory {
                 if (collisionEvent.isCancelled()) {
                     return;
                 }
+                // CraftBukkit end
 
-                if (entity instanceof EntityLiving && !(entity instanceof EntityHuman) && this.type == 0 && this.motX * this.motX + this.motZ * this.motZ > 0.01D && this.passenger == null && entity.vehicle == null) {
+                if (entity instanceof EntityLiving && !(entity instanceof EntityHuman) && !(entity instanceof EntityIronGolem) && this.type == 0 && this.motX * this.motX + this.motZ * this.motZ > 0.01D && this.passenger == null && entity.vehicle == null) {
                     entity.mount(this);
                 }
-                // CraftBukkit end
 
                 double d0 = entity.locX - this.locX;
                 double d1 = entity.locZ - this.locZ;
@@ -874,7 +887,7 @@ public class EntityMinecart extends Entity implements IInventory {
     }
 
     public int getMaxStackSize() {
-        return 64;
+        return maxStack; // CraftBukkit
     }
 
     public void update() {}

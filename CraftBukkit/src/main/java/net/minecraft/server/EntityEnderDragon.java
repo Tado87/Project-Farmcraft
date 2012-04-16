@@ -272,14 +272,14 @@ public class EntityEnderDragon extends EntityComplex {
             float f11 = MathHelper.sin(f10);
             float f12 = MathHelper.cos(f10);
 
-            this.h.G_();
+            this.h.F_();
             this.h.setPositionRotation(this.locX + (double) (f11 * 0.5F), this.locY, this.locZ - (double) (f12 * 0.5F), 0.0F, 0.0F);
-            this.l.G_();
+            this.l.F_();
             this.l.setPositionRotation(this.locX + (double) (f12 * 4.5F), this.locY + 2.0D, this.locZ + (double) (f11 * 4.5F), 0.0F, 0.0F);
-            this.m.G_();
+            this.m.F_();
             this.m.setPositionRotation(this.locX - (double) (f12 * 4.5F), this.locY + 2.0D, this.locZ - (double) (f11 * 4.5F), 0.0F, 0.0F);
             if (!this.world.isStatic) {
-                this.D();
+                this.C();
             }
 
             if (!this.world.isStatic && this.at == 0) {
@@ -294,7 +294,7 @@ public class EntityEnderDragon extends EntityComplex {
             f3 = MathHelper.sin(this.yaw * 3.1415927F / 180.0F - this.aY * 0.01F);
             float f13 = MathHelper.cos(this.yaw * 3.1415927F / 180.0F - this.aY * 0.01F);
 
-            this.g.G_();
+            this.g.F_();
             this.g.setPositionRotation(this.locX + (double) (f3 * 5.5F * f1), this.locY + (adouble1[1] - adouble[1]) * 1.0D + (double) (f9 * 5.5F), this.locZ - (double) (f13 * 5.5F * f1), 0.0F, 0.0F);
 
             for (int j = 0; j < 3; ++j) {
@@ -319,7 +319,7 @@ public class EntityEnderDragon extends EntityComplex {
                 float f17 = 1.5F;
                 float f18 = (float) (j + 1) * 2.0F;
 
-                entitycomplexpart.G_();
+                entitycomplexpart.F_();
                 entitycomplexpart.setPositionRotation(this.locX - (double) ((f11 * f17 + f15 * f18) * f1), this.locY + (adouble2[1] - adouble[1]) * 1.0D - (double) ((f18 + f17) * f9) + 1.5D, this.locZ + (double) ((f12 * f17 + f16 * f18) * f1), 0.0F, 0.0F);
             }
 
@@ -370,7 +370,7 @@ public class EntityEnderDragon extends EntityComplex {
         }
     }
 
-    private void D() {}
+    private void C() {}
 
     private void a(List list) {
         double d0 = (this.h.boundingBox.a + this.h.boundingBox.d) / 2.0D;
@@ -527,7 +527,7 @@ public class EntityEnderDragon extends EntityComplex {
         return true;
     }
 
-    protected void aA() {
+    protected void aB() {
         ++this.r;
         if (this.r >= 180 && this.r <= 200) {
             float f = (this.random.nextFloat() - 0.5F) * 8.0F;
@@ -562,7 +562,7 @@ public class EntityEnderDragon extends EntityComplex {
             }
 
             this.a(MathHelper.floor(this.locX), MathHelper.floor(this.locZ));
-            this.aG();
+            this.aH();
             this.die();
         }
     }
@@ -574,8 +574,7 @@ public class EntityEnderDragon extends EntityComplex {
         byte b1 = 4;
 
         // CraftBukkit start - Replace any "this.world" in the following with just "world"!
-        org.bukkit.event.entity.EntityCreatePortalEvent event = new org.bukkit.event.entity.EntityCreatePortalEvent((org.bukkit.entity.LivingEntity) this.getBukkitEntity(), new ArrayList<BlockState>(), org.bukkit.PortalType.ENDER);
-        org.bukkit.craftbukkit.util.BlockStateListPopulator world = new org.bukkit.craftbukkit.util.BlockStateListPopulator(this.world.getWorld(), event.getBlocks());
+        org.bukkit.craftbukkit.util.BlockStateListPopulator world = new org.bukkit.craftbukkit.util.BlockStateListPopulator(this.world.getWorld());
 
         for (int k = b0 - 1; k <= b0 + 32; ++k) {
             for (int l = i - b1; l <= i + b1; ++l) {
@@ -611,11 +610,22 @@ public class EntityEnderDragon extends EntityComplex {
         world.setTypeId(i, b0 + 3, j, Block.BEDROCK.id);
         world.setTypeId(i, b0 + 4, j, Block.DRAGON_EGG.id);
 
+        org.bukkit.event.entity.EntityCreatePortalEvent event = new org.bukkit.event.entity.EntityCreatePortalEvent((org.bukkit.entity.LivingEntity) this.getBukkitEntity(), java.util.Collections.unmodifiableList(world.getList()), org.bukkit.PortalType.ENDER);
         this.world.getServer().getPluginManager().callEvent(event);
 
         if (!event.isCancelled()) {
             for (BlockState state : event.getBlocks()) {
                 state.update(true);
+            }
+        } else {
+            for (BlockState state : event.getBlocks()) {
+                Packet53BlockChange packet = new Packet53BlockChange(state.getX(), state.getY(), state.getZ(), this.world);
+                for (Iterator it = this.world.players.iterator(); it.hasNext();) {
+                    EntityHuman entity = (EntityHuman) it.next();
+                    if (entity instanceof EntityPlayer) {
+                        ((EntityPlayer) entity).netServerHandler.sendPacket(packet);
+                    }
+                }
             }
         }
         // CraftBukkit end
@@ -623,9 +633,9 @@ public class EntityEnderDragon extends EntityComplex {
         BlockEnderPortal.a = false;
     }
 
-    protected void aF() {}
+    protected void aG() {}
 
-    public Entity[] ba() {
+    public Entity[] bb() {
         return this.children;
     }
 

@@ -264,7 +264,7 @@ net/minecraft/src/ContainerEnchantment 6041e620d5bb0cf6070dbd0608001910
 net/minecraft/src/ContainerFurnace 16e4133d3eecb62608bc7c29f150287a
 net/minecraft/src/ContainerPlayer 529a14757aee11333e34ad60e694ff23
 net/minecraft/src/ContainerWorkbench 855bb6c649fc4f0992abf58b0705a7c1
-net/minecraft/src/CraftingManager af1f7ffe4b339da353ec43b9b9af688d
+net/minecraft/src/CraftingManager 37bf4a2f296447c8e1b9afeca3dcea74
 net/minecraft/src/DamageSource 0c3b406d1dd12c8767cb28d649bb867b
 net/minecraft/src/DataWatcher 456d82ede583dac41b4ead05d167ec59
 net/minecraft/src/Direction 956c3abafbc51571eae1e3c702f916cb

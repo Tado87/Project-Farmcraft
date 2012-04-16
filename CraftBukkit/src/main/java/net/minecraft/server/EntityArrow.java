@@ -3,7 +3,6 @@ package net.minecraft.server;
 import java.util.List;
 
 // CraftBukkit start
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.entity.EntityCombustByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -104,8 +103,8 @@ public class EntityArrow extends Entity {
         this.k = 0;
     }
 
-    public void G_() {
-        super.G_();
+    public void F_() {
+        super.F_();
         if (this.lastPitch == 0.0F && this.lastYaw == 0.0F) {
             float f = MathHelper.sqrt(this.motX * this.motX + this.motZ * this.motZ);
 
@@ -211,18 +210,19 @@ public class EntityArrow extends Entity {
                         damagesource = DamageSource.arrow(this, this.shooter);
                     }
 
+                    // CraftBukkit start - moved damage call
+                    if (movingobjectposition.entity.damageEntity(damagesource, l)) {
                     if (this.isBurning() && (!(movingobjectposition.entity instanceof EntityPlayer) || this.world.pvpMode)) { // CraftBukkit - abide by pvp setting if destination is a player.
-                        // CraftBukkit start
                         EntityCombustByEntityEvent combustEvent = new EntityCombustByEntityEvent(this.getBukkitEntity(), entity.getBukkitEntity(), 5);
-                        Bukkit.getPluginManager().callEvent(combustEvent);
+                        org.bukkit.Bukkit.getPluginManager().callEvent(combustEvent);
 
                         if (!combustEvent.isCancelled()) {
                             movingobjectposition.entity.setOnFire(combustEvent.getDuration());
                         }
                         // CraftBukkit end
                     }
-                    // CraftBukkit - entity.damageEntity -> event function
-                    if (org.bukkit.craftbukkit.event.CraftEventFactory.handleProjectileEvent(projectile, entity, damagesource, l)) {
+
+                    //if (movingobjectposition.entity.damageEntity(damagesource, l)) { // CraftBukkit
                         if (movingobjectposition.entity instanceof EntityLiving) {
                             ++((EntityLiving) movingobjectposition.entity).aI;
                             if (this.n > 0) {
@@ -297,7 +297,7 @@ public class EntityArrow extends Entity {
             float f4 = 0.99F;
 
             f1 = 0.05F;
-            if (this.aT()) {
+            if (this.aU()) {
                 for (int i1 = 0; i1 < 4; ++i1) {
                     float f5 = 0.25F;
 
@@ -344,11 +344,11 @@ public class EntityArrow extends Entity {
     public void a_(EntityHuman entityhuman) {
         if (!this.world.isStatic) {
             // CraftBukkit start
-            ItemStack itemstack = new ItemStack(Item.ARROW, 1);
+            ItemStack itemstack = new ItemStack(Item.ARROW);
             if (this.inGround && this.fromPlayer && this.shake <= 0 && entityhuman.inventory.canHold(itemstack) > 0) {
-                net.minecraft.server.EntityItem item = new net.minecraft.server.EntityItem(this.world, this.locX, this.locY, this.locZ, itemstack);
+                EntityItem item = new EntityItem(this.world, this.locX, this.locY, this.locZ, itemstack);
 
-                PlayerPickupItemEvent event = new PlayerPickupItemEvent((org.bukkit.entity.Player) entityhuman.getBukkitEntity(), new org.bukkit.craftbukkit.entity.CraftItem(this.world.getServer(), item), 0);
+                PlayerPickupItemEvent event = new PlayerPickupItemEvent((org.bukkit.entity.Player) entityhuman.getBukkitEntity(), new org.bukkit.craftbukkit.entity.CraftItem(this.world.getServer(), this, item), 0);
                 this.world.getServer().getPluginManager().callEvent(event);
 
                 if (event.isCancelled()) {

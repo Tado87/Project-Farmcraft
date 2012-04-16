@@ -1,7 +1,9 @@
 package org.bukkit.craftbukkit.inventory;
 
 import org.bukkit.craftbukkit.entity.CraftPlayer;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 
 import net.minecraft.server.Container;
@@ -11,8 +13,10 @@ import net.minecraft.server.Packet100OpenWindow;
 import net.minecraft.server.Slot;
 
 public class CraftContainer extends Container {
-    InventoryView view;
-    InventoryType cachedType;
+    private InventoryView view;
+    private InventoryType cachedType;
+    private String cachedTitle;
+    private int cachedSize;
 
     public CraftContainer(InventoryView view, int id) {
         this.view = view;
@@ -21,7 +25,33 @@ public class CraftContainer extends Container {
         IInventory top = ((CraftInventory)view.getTopInventory()).getInventory();
         IInventory bottom = ((CraftInventory)view.getBottomInventory()).getInventory();
         cachedType = view.getType();
+        cachedTitle = view.getTitle();
+        cachedSize = getSize();
         setupSlots(top, bottom);
+    }
+
+    public CraftContainer(final Inventory inventory, final HumanEntity player, int id) {
+        this(new InventoryView() {
+            @Override
+            public Inventory getTopInventory() {
+                return inventory;
+            }
+
+            @Override
+            public Inventory getBottomInventory() {
+                return player.getInventory();
+            }
+
+            @Override
+            public HumanEntity getPlayer() {
+                return player;
+            }
+
+            @Override
+            public InventoryType getType() {
+                return inventory.getType();
+            }
+        }, id);
     }
 
     @Override
@@ -29,41 +59,61 @@ public class CraftContainer extends Container {
         return view;
     }
 
+    private int getSize() {
+        return view.getTopInventory().getSize();
+    }
+
     @Override
     public boolean b(EntityHuman entityhuman) {
-        if (cachedType == view.getType()) {
+        if (cachedType == view.getType() && cachedSize == getSize() && cachedTitle.equals(view.getTitle())) {
             return true;
         }
         // If the window type has changed for some reason, update the player
         // This method will be called every tick or something, so it's
         // as good a place as any to put something like this.
+        boolean typeChanged = (cachedType != view.getType());
         cachedType = view.getType();
+        cachedTitle = view.getTitle();
         if (view.getPlayer() instanceof CraftPlayer) {
             CraftPlayer player = (CraftPlayer) view.getPlayer();
-            int type;
-            switch(cachedType) {
-            case WORKBENCH:
-                type = 1;
-                break;
-            case FURNACE:
-                type = 2;
-                break;
-            case DISPENSER:
-                type = 3;
-                break;
-            default:
-                type = 0;
-                break;
-            }
+            int type = getNotchInventoryType(cachedType);
             IInventory top = ((CraftInventory)view.getTopInventory()).getInventory();
             IInventory bottom = ((CraftInventory)view.getBottomInventory()).getInventory();
             this.d.clear();
             this.e.clear();
-            setupSlots(top, bottom);
-            player.getHandle().netServerHandler.sendPacket(new Packet100OpenWindow(this.windowId, type, "Crafting", 9));
+            if (typeChanged) {
+                setupSlots(top, bottom);
+            }
+            int size = getSize();
+            player.getHandle().netServerHandler.sendPacket(new Packet100OpenWindow(this.windowId, type, cachedTitle, size));
             player.updateInventory();
         }
         return true;
+    }
+
+    public static int getNotchInventoryType(InventoryType type) {
+        int typeID;
+        switch(type) {
+        case WORKBENCH:
+            typeID = 1;
+            break;
+        case FURNACE:
+            typeID = 2;
+            break;
+        case DISPENSER:
+            typeID = 3;
+            break;
+        case ENCHANTING:
+            typeID = 4;
+            break;
+        case BREWING:
+            typeID = 5;
+            break;
+        default:
+            typeID = 0;
+            break;
+        }
+        return typeID;
     }
 
     private void setupSlots(IInventory top, IInventory bottom) {

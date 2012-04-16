@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.bukkit.BlockChangeDelegate; // CraftBukkit
 
-public class WorldGenGroundBush extends WorldGenerator {
+public class WorldGenGroundBush extends WorldGenerator implements BlockSapling.TreeGenerator { // CraftBukkit - add interface
 
     private int a;
     private int b;
@@ -31,7 +31,7 @@ public class WorldGenGroundBush extends WorldGenerator {
 
         if (i1 == Block.DIRT.id || i1 == Block.GRASS.id) {
             ++j;
-            world.setRawTypeIdAndData(i, j, k, Block.LOG.id, this.b);
+            this.setTypeAndData(world, i, j, k, Block.LOG.id, this.b);
 
             for (int j1 = j; j1 <= j + 2; ++j1) {
                 int k1 = j1 - j;
@@ -49,7 +49,11 @@ public class WorldGenGroundBush extends WorldGenerator {
                     }
                 }
             }
+        // CraftBukkit start - return false if gen was unsuccessful
+        } else {
+            return false;
         }
+        // CraftBukkit end
 
         return true;
     }

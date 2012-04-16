@@ -6,7 +6,7 @@
 #
 # RetroGuard MCP v3.6.5
 #
-# Logfile created on Sun Apr 15 21:03:57 CEST 2012
+# Logfile created on Mon Apr 16 14:13:16 CEST 2012
 #
 # Jar file to be obfuscated:           client_recomp.jar
 # Target Jar file for obfuscated code: client_reobf.jar
@@ -22,7 +22,7 @@
 #      Your class net/minecraft/src/GuiChat uses '.class' or calls java/lang/Class.forName(Ljava/lang/String;)Ljava/lang/Class;
 #      Your class net/minecraft/src/GuiChat calls the java/lang/Class method getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 #
-# Memory in use after class data structure built: 11809968 bytes
+# Memory in use after class data structure built: 11811616 bytes
 # Total memory available                        : 28258304 bytes
 #
 #

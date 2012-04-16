@@ -66,3 +66,191 @@
 2012-04-16 00:55:40,731 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
 2012-04-16 00:55:40,736 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2012-04-16 00:55:40,737 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 00:58:25,212 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:58:25,212 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 00:58:25,213 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:58:25,213 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 00:58:59,746 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 00:59:00,011 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /craftbukkit/src/main/java
+2012-04-16 00:59:00,014 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /craftbukkit/src/main/resources
+2012-04-16 00:59:00,014 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /craftbukkit/src/test/java
+2012-04-16 00:59:00,124 [Worker-7] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Project import completed 0 sec
+2012-04-16 00:59:00,219 [Worker-9] INFO  o.e.m.c.u.i.UpdateConfigurationJob - Update started
+2012-04-16 00:59:00,220 [Worker-9] INFO  o.e.m.c.u.i.UpdateConfigurationJob - Update completed: 0 sec
+2012-04-16 00:59:00,602 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 00:59:00,861 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 00:59:07,324 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.3-R0.2 @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 00:59:07,498 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:07,499 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 00:59:07,506 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:07,506 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 00:59:10,589 [Worker-10] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit
+2012-04-16 00:59:10,589 [Worker-10] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2012-04-16 00:59:13,780 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:13,781 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 00:59:13,787 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:13,787 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 00:59:26,363 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:26,363 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 00:59:26,364 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:26,364 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 00:59:31,256 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit
+2012-04-16 00:59:31,256 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2012-04-16 00:59:33,308 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:33,309 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 00:59:33,315 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 00:59:33,315 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 01:00:49,376 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.5-R1.2-SNAPSHOT @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 01:00:49,865 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.bukkit.org/content/groups/public/org/bukkit/bukkit/1.2.5-R1.2-SNAPSHOT/maven-metadata.xml
+2012-04-16 01:00:49,867 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.bukkit.org/content/groups/public/org/bukkit/bukkit/1.2.5-R1.2-SNAPSHOT/maven-metadata.xml
+2012-04-16 01:00:50,465 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.bukkit.org/content/groups/public/org/bukkit/bukkit/1.2.5-R1.2-SNAPSHOT/bukkit-1.2.5-R1.2-20120414.065214-2.pom
+2012-04-16 01:00:50,466 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.bukkit.org/content/groups/public/org/bukkit/bukkit/1.2.5-R1.2-SNAPSHOT/bukkit-1.2.5-R1.2-20120414.065214-2.pom
+2012-04-16 01:00:51,124 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.bukkit.org/content/groups/public/org/bukkit/minecraft-server/1.2.5/minecraft-server-1.2.5.pom
+2012-04-16 01:00:51,124 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.bukkit.org/content/groups/public/org/bukkit/minecraft-server/1.2.5/minecraft-server-1.2.5.pom
+2012-04-16 01:00:51,928 [New I/O client worker #5-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.bukkit.org/content/groups/public/org/bukkit/bukkit/1.2.5-R1.2-SNAPSHOT/bukkit-1.2.5-R1.2-20120414.065214-2.jar
+2012-04-16 01:00:52,089 [New I/O client worker #5-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.bukkit.org/content/groups/public/org/bukkit/minecraft-server/1.2.5/minecraft-server-1.2.5.jar
+2012-04-16 01:00:56,451 [New I/O client worker #5-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.bukkit.org/content/groups/public/org/bukkit/minecraft-server/1.2.5/minecraft-server-1.2.5.jar
+2012-04-16 01:01:03,254 [New I/O client worker #5-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.bukkit.org/content/groups/public/org/bukkit/bukkit/1.2.5-R1.2-SNAPSHOT/bukkit-1.2.5-R1.2-20120414.065214-2.jar
+2012-04-16 01:01:04,348 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /craftbukkit/src/main/java
+2012-04-16 01:01:04,353 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /craftbukkit/src/main/resources
+2012-04-16 01:01:04,358 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /craftbukkit/src/test/java
+2012-04-16 01:01:04,558 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Project import completed 15 sec
+2012-04-16 01:01:04,612 [Worker-8] INFO  o.e.m.c.u.i.UpdateConfigurationJob - Update started
+2012-04-16 01:01:04,613 [Worker-8] INFO  o.e.m.c.u.i.UpdateConfigurationJob - Update completed: 0 sec
+2012-04-16 01:01:05,267 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.5-R1.2-SNAPSHOT @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 01:01:09,156 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.5-R1.2-SNAPSHOT @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 01:01:09,439 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 01:01:09,439 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 01:01:09,445 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 01:01:09,446 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 01:01:27,989 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit
+2012-04-16 01:01:27,989 [Worker-8] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2012-04-16 01:01:31,228 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 01:01:31,230 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 01:01:31,236 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 01:01:31,236 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 14:02:26,989 [Worker-2] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-16 14:02:50,065 [Worker-2] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 23080 ms
+2012-04-16 15:18:49,043 [Worker-5] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|http://repo1.maven.org/maven2
+2012-04-16 15:19:05,151 [Worker-5] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updated index for repository: central|http://repo1.maven.org/maven2 in 16114 ms
+2012-04-16 15:21:30,880 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.bukkit:craftbukkit:1.2.5-R1.2-SNAPSHOT @ C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\pom.xml.
+2012-04-16 15:21:33,216 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:21:33,237 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:21:33,263 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:21:33,263 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:21:34,464 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:21:34,466 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:21:34,468 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:21:34,468 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:22:24,911 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:22:24,914 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:22:24,917 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:22:24,917 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:22:44,303 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:22:44,304 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:22:44,308 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:22:44,308 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:23:03,065 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:23:03,066 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:23:03,117 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:23:03,117 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:29:11,967 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:29:11,969 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:29:11,970 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:29:11,970 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:31:39,579 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:31:39,580 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:31:39,581 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:31:39,581 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:33:19,203 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:33:19,204 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:33:19,205 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:33:19,206 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:33:39,437 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:33:39,438 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:33:39,439 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:33:39,439 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:37:53,563 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:37:53,564 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:37:53,566 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:37:53,566 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:38:28,002 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit
+2012-04-16 15:38:28,003 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2012-04-16 15:38:32,227 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:38:32,228 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:38:32,234 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:38:32,234 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:39:33,208 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:39:33,210 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:39:33,211 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:39:33,211 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:40:12,235 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:40:12,236 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:40:12,237 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:40:12,237 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:40:34,111 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:40:34,112 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:40:34,123 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:40:34,123 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:40:42,991 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:40:42,992 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:40:42,993 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:40:42,993 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:40:53,567 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2012-04-16 15:40:58,238 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit
+2012-04-16 15:40:58,238 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-04-16 15:41:05,024 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:41:05,026 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:41:05,032 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:41:05,032 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:41:06,090 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:41:06,091 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:41:06,093 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:41:06,093 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:41:12,093 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2012-04-16 15:42:03,722 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:03,723 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 15:42:03,723 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:03,723 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:09,732 [Worker-5] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit
+2012-04-16 15:42:09,733 [Worker-5] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2012-04-16 15:42:18,542 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:18,543 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:42:18,545 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:18,545 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:19,761 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:19,762 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:42:19,763 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:19,763 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:20,773 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:20,774 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:42:20,775 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:20,775 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:22,049 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:22,060 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:42:22,068 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:22,069 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:23,262 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:23,263 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:42:23,269 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:23,270 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:24,677 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:24,678 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2012-04-16 15:42:24,679 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:24,679 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:30,700 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:30,701 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 15:42:30,703 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:30,703 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:38,287 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:38,288 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 15:42:38,288 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:38,289 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:42:46,545 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:46,546 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 15:42:46,547 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:42:46,547 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources
+2012-04-16 15:43:10,169 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:43:10,169 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2012-04-16 15:43:10,174 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2012-04-16 15:43:10,174 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\CARDON\Desktop\Modding FarmCraft\Project-Farmcraft\CraftBukkit\src\test\resources

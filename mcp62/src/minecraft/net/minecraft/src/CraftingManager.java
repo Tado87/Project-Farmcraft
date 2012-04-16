@@ -66,7 +66,7 @@ public class CraftingManager
                 });
         //fin 
         //Craft arraignée
-        addRecipe(new ItemStack(Block.BlockJumpBlock, 1), new Object[]
+        addRecipe(new ItemStack(Block.web, 1), new Object[]
                 {
                     "# #", " # ", "# #", '#', Item.silk
                 });

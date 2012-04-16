@@ -1,11 +1,17 @@
 package net.minecraft.server;
 
-import org.bukkit.event.entity.ExplosionPrimeEvent; // CraftBukkit
+// CraftBukkit start
+import java.util.List;
+
+import org.bukkit.craftbukkit.event.CraftEventFactory;
+import org.bukkit.event.entity.ExplosionPrimeEvent;
+// CraftBukkit end
 
 public class EntityCreeper extends EntityMonster {
 
     int fuseTicks;
     int b;
+    private int record = -1; // CraftBukkit
 
     public EntityCreeper(World world) {
         super(world);
@@ -17,7 +23,7 @@ public class EntityCreeper extends EntityMonster {
         this.goalSelector.a(5, new PathfinderGoalRandomStroll(this, 0.2F));
         this.goalSelector.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
         this.goalSelector.a(6, new PathfinderGoalRandomLookaround(this));
-        this.targetSelector.a(1, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 16.0F, 0, false));
+        this.targetSelector.a(1, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 16.0F, 0, true));
         this.targetSelector.a(2, new PathfinderGoalHurtByTarget(this, false));
     }
 
@@ -47,7 +53,7 @@ public class EntityCreeper extends EntityMonster {
         this.datawatcher.watch(17, Byte.valueOf((byte) (nbttagcompound.getBoolean("powered") ? 1 : 0)));
     }
 
-    public void G_() {
+    public void F_() {
         if (this.isAlive()) {
             this.b = this.fuseTicks;
             int i = this.A();
@@ -79,7 +85,7 @@ public class EntityCreeper extends EntityMonster {
             }
         }
 
-        super.G_();
+        super.F_();
     }
 
     protected String j() {
@@ -91,11 +97,42 @@ public class EntityCreeper extends EntityMonster {
     }
 
     public void die(DamageSource damagesource) {
-        super.die(damagesource);
+        // CraftBukkit start - rearranged the method (super call to end, drop to dropDeathLoot)
         if (damagesource.getEntity() instanceof EntitySkeleton) {
-            this.b(Item.RECORD_1.id + this.random.nextInt(10), 1);
+            // this.b(Item.RECORD_1.id + this.random.nextInt(10), 1); // CraftBukkit
+            this.record = Item.RECORD_1.id + this.random.nextInt(10);
         }
+        super.die(damagesource);
+        // CraftBukkit end
     }
+
+    // CraftBukkit start - whole method
+    protected void dropDeathLoot(boolean flag, int i) {
+        int j = this.getLootId();
+
+        List<org.bukkit.inventory.ItemStack> loot = new java.util.ArrayList<org.bukkit.inventory.ItemStack>();
+
+        if (j > 0) {
+            int k = this.random.nextInt(3);
+
+            if (i > 0) {
+                k += this.random.nextInt(i + 1);
+            }
+
+            if (k > 0) {
+                loot.add(new org.bukkit.inventory.ItemStack(j, k));
+            }
+        }
+
+        // Drop a music disc?
+        if (this.record != -1) {
+            loot.add(new org.bukkit.inventory.ItemStack(this.record, 1));
+            this.record = -1;
+        }
+
+        CraftEventFactory.callEntityDeathEvent(this, loot); // raise event even for those times when the entity does not drop loot
+    }
+    // CraftBukkit end
 
     public boolean a(Entity entity) {
         return true;
@@ -131,8 +168,9 @@ public class EntityCreeper extends EntityMonster {
     public void setPowered(boolean powered) {
         if (!powered) {
             this.datawatcher.watch(17, Byte.valueOf((byte) 0));
-        } else
+        } else {
+            this.datawatcher.watch(17, Byte.valueOf((byte) 1));
+        }
         // CraftBukkit end
-        this.datawatcher.watch(17, Byte.valueOf((byte) 1));
     }
 }

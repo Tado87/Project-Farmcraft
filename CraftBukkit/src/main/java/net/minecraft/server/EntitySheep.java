@@ -20,7 +20,7 @@ public class EntitySheep extends EntityAnimal {
         this.b(0.9F, 1.3F);
         float f = 0.23F;
 
-        this.ak().a(true);
+        this.al().a(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalPanic(this, 0.38F));
         this.goalSelector.a(2, new PathfinderGoalBreed(this, f));
@@ -93,7 +93,6 @@ public class EntitySheep extends EntityAnimal {
 
                 for (int j = 0; j < i; ++j) {
                     EntityItem entityitem = this.a(new ItemStack(Block.WOOL.id, 1, this.getColor()), 1.0F);
-
                     entityitem.motY += (double) (this.random.nextFloat() * 0.05F);
                     entityitem.motX += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
                     entityitem.motZ += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);

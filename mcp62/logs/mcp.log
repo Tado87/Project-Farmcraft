@@ -1999,3 +1999,111 @@ based on RetroGuard v2.3.1 by Retrologic Systems - www.retrologic.com
 21:04:13 - > Outputted net/minecraft/src/Block             to reobf\minecraft as pb.class
 21:04:13 - - Done in 17.44 seconds
 21:04:13 - !! Can not find server md5s !!
+14:05:49 - == MCP 6.2 (data: 6.2, client: 1.2.5, server: 1.2.5) ==
+14:05:49 - OS : win32
+14:05:49 - > Searching for javac.exe in C:\Program Files
+14:11:07 - # VERSION INFO
+14:11:07 - python: 2.7.2 (default, Jun 12 2011, 15:08:59) [MSC v.1500 32 bit (Intel)]
+14:11:07 - platform: Windows-7-6.1.7601-SP1
+14:11:07 - # java: '"C:\Program Files\Java\jdk1.6.0_30\bin\java" -version'
+14:11:08 - java version "1.6.0_30"
+Java(TM) SE Runtime Environment (build 1.6.0_30-b12)
+Java HotSpot(TM) Client VM (build 20.5-b03, mixed mode, sharing)
+14:11:08 - # javac: '"C:\Program Files\Java\jdk1.6.0_30\bin\javac" -version'
+14:11:09 - javac 1.6.0_30
+14:11:09 - # javac runtime: '"C:\Program Files\Java\jdk1.6.0_30\bin\javac" -J-version'
+14:11:09 - java version "1.6.0_30"
+Java(TM) SE Runtime Environment (build 1.6.0_30-b12)
+Java HotSpot(TM) Client VM (build 20.5-b03, mixed mode, sharing)
+14:11:09 - # retroguard: 'runtime\bin\retroguard.jar --version'
+14:11:09 - RetroGuard MCP v3.6.5
+based on RetroGuard v2.3.1 by Retrologic Systems - www.retrologic.com
+14:11:09 - # mcinjector: 'runtime\bin\mcinjector.jar --version'
+14:11:09 - MCInjector v2.8 by Searge, LexManos, Fesh0r
+14:11:09 - # jadretro: 'runtime\bin\jadretro.jar'
+14:11:09 - JadRetro v1.6 - a Java decompiler helper
+14:11:09 - # patch: 'runtime\bin\applydiff.exe --version'
+14:11:09 - patch 2.5.4
+14:11:09 - # astyle: 'runtime\bin\astyle.exe --version'
+14:11:10 - Artistic Style Version 2.02.1
+14:11:10 - # jad: 'runtime\bin\jad.exe'
+14:11:10 - Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov (jad@kpdus.com).
+14:11:10 - # fernflower: 'runtime\bin\fernflower.jar'
+14:11:10 - Unable to access jarfile runtime\bin\fernflower.jar
+14:11:10 - # found jad, jad patches, ff patches, osx patches, srgs, name csvs, doc csvs, param csvs, astyle, astyle config
+14:11:10 - == Recompiling client ==
+14:11:10 - > Cleaning bin
+14:11:13 - > Recompiling
+14:11:14 - runcmd: '"C:\Program Files\Java\jdk1.6.0_30\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "lib;lib\*;jars\bin\minecraft.jar;jars\bin\jinput.jar;jars\bin\lwjgl.jar;jars\bin\lwjgl_util.jar" -sourcepath src\minecraft -d bin\minecraft src\minecraft\*.java src\minecraft\argo\format\*.java src\minecraft\argo\jdom\*.java src\minecraft\argo\saj\*.java src\minecraft\net\minecraft\client\*.java src\minecraft\net\minecraft\isom\*.java src\minecraft\net\minecraft\src\*.java'
+14:11:14 - shlex: ['C:\\Program Files\\Java\\jdk1.6.0_30\\bin\\javac', '-Xlint:-options', '-deprecation', '-g', '-source', '1.6', '-target', '1.6', '-classpath', 'lib;lib\\*;jars\\bin\\minecraft.jar;jars\\bin\\jinput.jar;jars\\bin\\lwjgl.jar;jars\\bin\\lwjgl_util.jar', '-sourcepath', 'src\\minecraft', '-d', 'bin\\minecraft', 'src\\minecraft\\*.java', 'src\\minecraft\\argo\\format\\*.java', 'src\\minecraft\\argo\\jdom\\*.java', 'src\\minecraft\\argo\\saj\\*.java', 'src\\minecraft\\net\\minecraft\\client\\*.java', ...
+14:11:41 - Note: Some input files use unchecked or unsafe operations.
+14:11:41 - Note: Recompile with -Xlint:unchecked for details.
+14:11:41 - - Done in 31.30 seconds
+14:11:41 - !! Can not find server sources, try decompiling !!
+14:11:49 - == MCP 6.2 (data: 6.2, client: 1.2.5, server: 1.2.5) ==
+14:11:49 - OS : win32
+14:11:49 - > Searching for javac.exe in C:\Program Files
+14:13:13 - # VERSION INFO
+14:13:13 - python: 2.7.2 (default, Jun 12 2011, 15:08:59) [MSC v.1500 32 bit (Intel)]
+14:13:13 - platform: Windows-7-6.1.7601-SP1
+14:13:13 - # java: '"C:\Program Files\Java\jdk1.6.0_30\bin\java" -version'
+14:13:14 - java version "1.6.0_30"
+Java(TM) SE Runtime Environment (build 1.6.0_30-b12)
+Java HotSpot(TM) Client VM (build 20.5-b03, mixed mode, sharing)
+14:13:14 - # javac: '"C:\Program Files\Java\jdk1.6.0_30\bin\javac" -version'
+14:13:14 - javac 1.6.0_30
+14:13:14 - # javac runtime: '"C:\Program Files\Java\jdk1.6.0_30\bin\javac" -J-version'
+14:13:14 - java version "1.6.0_30"
+Java(TM) SE Runtime Environment (build 1.6.0_30-b12)
+Java HotSpot(TM) Client VM (build 20.5-b03, mixed mode, sharing)
+14:13:14 - # retroguard: 'runtime\bin\retroguard.jar --version'
+14:13:14 - RetroGuard MCP v3.6.5
+based on RetroGuard v2.3.1 by Retrologic Systems - www.retrologic.com
+14:13:14 - # mcinjector: 'runtime\bin\mcinjector.jar --version'
+14:13:14 - MCInjector v2.8 by Searge, LexManos, Fesh0r
+14:13:14 - # jadretro: 'runtime\bin\jadretro.jar'
+14:13:14 - JadRetro v1.6 - a Java decompiler helper
+14:13:14 - # patch: 'runtime\bin\applydiff.exe --version'
+14:13:14 - patch 2.5.4
+14:13:14 - # astyle: 'runtime\bin\astyle.exe --version'
+14:13:14 - Artistic Style Version 2.02.1
+14:13:14 - # jad: 'runtime\bin\jad.exe'
+14:13:14 - Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov (jad@kpdus.com).
+14:13:14 - # fernflower: 'runtime\bin\fernflower.jar'
+14:13:14 - Unable to access jarfile runtime\bin\fernflower.jar
+14:13:14 - # found jad, jad patches, ff patches, osx patches, srgs, name csvs, doc csvs, param csvs, astyle, astyle config
+14:13:14 - > Creating Retroguard config files
+14:13:15 - == Reobfuscating client ==
+14:13:15 - > Cleaning reobf
+14:13:15 - > Generating md5s
+14:13:15 - > Packing jar
+14:13:16 - > Reobfuscating jar
+14:13:16 - runcmd: '"C:\Program Files\Java\jdk1.6.0_30\bin\java" -cp "runtime\bin\retroguard.jar;lib;lib\*;jars\bin\minecraft.jar;jars\bin\jinput.jar;jars\bin\lwjgl.jar;jars\bin\lwjgl_util.jar" RetroGuard -notch temp\client_ro.cfg'
+14:13:16 - shlex: ['C:\\Program Files\\Java\\jdk1.6.0_30\\bin\\java', '-cp', 'runtime\\bin\\retroguard.jar;lib;lib\\*;jars\\bin\\minecraft.jar;jars\\bin\\jinput.jar;jars\\bin\\lwjgl.jar;jars\\bin\\lwjgl_util.jar', 'RetroGuard', '-notch', 'temp\\client_ro.cfg']
+14:13:41 - > Extracting modified classes
+14:13:41 - > Modified class found : net/minecraft/src/RegionFile
+14:13:41 - > New class found      : net/minecraft/src/BlockSpeedy
+14:13:41 - > Modified class found : net/minecraft/src/BlockFence
+14:13:41 - > New class found      : net/minecraft/src/BlockJumpBlock
+14:13:41 - > Modified class found : net/minecraft/src/ContainerCreative
+14:13:41 - > Modified class found : net/minecraft/src/CraftingManager
+14:13:41 - > Modified class found : net/minecraft/src/GuiMainMenu
+14:13:41 - > Modified class found : net/minecraft/src/EntityPlayer
+14:13:41 - > Modified class found : net/minecraft/src/GLAllocation
+14:13:41 - > New class found      : net/minecraft/src/BlockLanterne
+14:13:41 - > Modified class found : net/minecraft/src/RegionFileCache
+14:13:41 - > Modified class found : net/minecraft/src/Block
+14:13:41 - > Outputted net/minecraft/src/RegionFile        to reobf\minecraft as lz.class
+14:13:41 - > Outputted net/minecraft/src/BlockSpeedy       to reobf\minecraft as BlockSpeedy.class
+14:13:41 - > Outputted net/minecraft/src/BlockFence        to reobf\minecraft as abg.class
+14:13:41 - > Outputted net/minecraft/src/BlockJumpBlock    to reobf\minecraft as BlockJumpBlock.class
+14:13:41 - > Outputted net/minecraft/src/ContainerCreative to reobf\minecraft as os.class
+14:13:41 - > Outputted net/minecraft/src/CraftingManager   to reobf\minecraft as fr.class
+14:13:41 - > Outputted net/minecraft/src/GuiMainMenu       to reobf\minecraft as xt.class
+14:13:41 - > Outputted net/minecraft/src/EntityPlayer      to reobf\minecraft as yw.class
+14:13:41 - > Outputted net/minecraft/src/GLAllocation      to reobf\minecraft as ew.class
+14:13:41 - > Outputted net/minecraft/src/BlockLanterne     to reobf\minecraft as BlockLanterne.class
+14:13:41 - > Outputted net/minecraft/src/RegionFileCache   to reobf\minecraft as agp.class
+14:13:41 - > Outputted net/minecraft/src/Block             to reobf\minecraft as pb.class
+14:13:41 - - Done in 26.52 seconds
+14:13:41 - !! Can not find server md5s !!

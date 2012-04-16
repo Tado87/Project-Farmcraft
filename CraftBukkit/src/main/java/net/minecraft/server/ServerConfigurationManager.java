@@ -13,9 +13,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 // CraftBukkit start
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.CraftServer;
 import org.bukkit.craftbukkit.CraftWorld;
@@ -144,6 +141,7 @@ public class ServerConfigurationManager {
 
         worldserver.addEntity(entityplayer);
         this.getPlayerManager(entityplayer.dimension).addPlayer(entityplayer);
+        this.u();
 
         // CraftBukkit start - sendAll above replaced with this loop
         Packet201PlayerInfo packet = new Packet201PlayerInfo(entityplayer.listName, true, 1000);
@@ -205,8 +203,8 @@ public class ServerConfigurationManager {
         // in the event, check with plugins to see if it's ok, and THEN kick
         // depending on the outcome. Also change any reference to this.e.c to entity.world
         EntityPlayer entity = new EntityPlayer(this.server, this.server.getWorldServer(0), s, new ItemInWorldManager(this.server.getWorldServer(0)));
-        Player player = (Player) entity.getBukkitEntity();
-        PlayerLoginEvent event = new PlayerLoginEvent(player, hostname);
+        Player player = entity.getBukkitEntity();
+        PlayerLoginEvent event = new PlayerLoginEvent(player, hostname, netloginhandler.getSocket().getInetAddress());
 
         String s1 = netloginhandler.networkManager.getSocketAddress().toString();
 
@@ -324,85 +322,6 @@ public class ServerConfigurationManager {
             org.bukkit.event.player.PlayerChangedWorldEvent event = new org.bukkit.event.player.PlayerChangedWorldEvent((Player) entityplayer1.getBukkitEntity(), fromWorld);
             Bukkit.getServer().getPluginManager().callEvent(event);
         }
-        // CraftBukkit end
-
-        // CraftBukkit start - temporary hacky entity fix.
-        Timer timer = new Timer();
-        final ArrayList<Entity> nearby = new ArrayList<Entity>();
-        final EntityPlayer nmsEntity = entityplayer1;
-        // Start inline nearby entities
-        AxisAlignedBB axisalignedbb = nmsEntity.boundingBox.grow(100, 100, 100);
-        i = MathHelper.floor((axisalignedbb.a - 2.0D) / 16.0D);
-        int j = MathHelper.floor((axisalignedbb.d + 2.0D) / 16.0D);
-        int k = MathHelper.floor((axisalignedbb.c - 2.0D) / 16.0D);
-        int l = MathHelper.floor((axisalignedbb.f + 2.0D) / 16.0D);
-
-        for (int i1 = i; i1 <= j; ++i1) {
-            for (int j1 = k; j1 <= l; ++j1) {
-                if (nmsEntity.world.chunkProvider.isChunkLoaded(i1, j1)) {
-                    nmsEntity.world.getChunkAt(i1, j1).a(nmsEntity, axisalignedbb, nearby);
-                }
-            }
-        }
-        // End inline nearby entities
-        for (Object entity : nearby) {
-            if (entity instanceof EntityLiving || entity instanceof EntityMinecart || entity instanceof EntityBoat || entity instanceof IAnimal || entity instanceof EntityPainting) {
-                nmsEntity.netServerHandler.sendPacket(new Packet29DestroyEntity(((Entity) entity).id));
-           }
-        }
-
-        timer.schedule(new TimerTask(){
-            public void run() {
-                // Start inline nearby entities
-                nearby.clear();
-                AxisAlignedBB axisalignedbb = nmsEntity.boundingBox.grow(100, 100, 100);
-                int i = MathHelper.floor((axisalignedbb.a - 2.0D) / 16.0D);
-                int j = MathHelper.floor((axisalignedbb.d + 2.0D) / 16.0D);
-                int k = MathHelper.floor((axisalignedbb.c - 2.0D) / 16.0D);
-                int l = MathHelper.floor((axisalignedbb.f + 2.0D) / 16.0D);
-
-                for (int i1 = i; i1 <= j; ++i1) {
-                    for (int j1 = k; j1 <= l; ++j1) {
-                        if (nmsEntity.world.chunkProvider.isChunkLoaded(i1, j1)) {
-                            nmsEntity.world.getChunkAt(i1, j1).a(nmsEntity, axisalignedbb, nearby);
-                        }
-                    }
-                }
-                // End inline nearby entities
-                for (Object entityObject2 : nearby) {
-                    try {
-                        Entity entity = (Entity) entityObject2;
-
-                        if (entity instanceof EntityPlayer) {
-                            nmsEntity.netServerHandler.sendPacket(new Packet20NamedEntitySpawn((EntityHuman) entity));
-                        } else if (entity instanceof EntityMinecart) {
-                            EntityMinecart entityminecart = (EntityMinecart) entity;
-
-                            if (entityminecart.type == 0) {
-                                nmsEntity.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 10));
-                            }
-
-                            if (entityminecart.type == 1) {
-                                nmsEntity.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 11));
-                            }
-
-                            if (entityminecart.type == 2) {
-                                nmsEntity.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 12));
-                            }
-                        } else if (entity instanceof EntityBoat) {
-                            nmsEntity.netServerHandler.sendPacket(new Packet23VehicleSpawn(entity, 1));
-                        } else if (entity instanceof IAnimal) {
-                            nmsEntity.netServerHandler.sendPacket(new Packet24MobSpawn((EntityLiving) entity));
-                        } else if (entity instanceof EntityEnderDragon) {
-                            nmsEntity.netServerHandler.sendPacket(new Packet24MobSpawn((EntityLiving) entity));
-                        } else if (entity instanceof EntityPainting) {
-                            nmsEntity.netServerHandler.sendPacket(new Packet25EntityPainting((EntityPainting) entity));
-                        }
-                    } catch (ClassCastException e) {
-                    }
-                }
-            }
-        }, 5000);
         // CraftBukkit end
 
         return entityplayer1;
@@ -833,7 +752,7 @@ public class ServerConfigurationManager {
 
     public void updateClient(EntityPlayer entityplayer) {
         entityplayer.updateInventory(entityplayer.defaultContainer);
-        entityplayer.J();
+        entityplayer.D_();
         entityplayer.lastSentExp = -1; // CraftBukkit
     }
 
@@ -843,5 +762,29 @@ public class ServerConfigurationManager {
 
     public int getMaxPlayers() {
         return this.maxPlayers;
+    }
+
+    public String[] getSeenPlayers() {
+        return this.server.worlds.get(0).getDataManager().getPlayerFileData().getSeenPlayers(); // CraftBukkit
+    }
+
+    private void u() {
+        MojangStatisticsGenerator mojangstatisticsgenerator = new MojangStatisticsGenerator("server");
+
+        mojangstatisticsgenerator.a("version", this.server.getVersion());
+        mojangstatisticsgenerator.a("os_name", System.getProperty("os.name"));
+        mojangstatisticsgenerator.a("os_version", System.getProperty("os.version"));
+        mojangstatisticsgenerator.a("os_architecture", System.getProperty("os.arch"));
+        mojangstatisticsgenerator.a("memory_total", Long.valueOf(Runtime.getRuntime().totalMemory()));
+        mojangstatisticsgenerator.a("memory_max", Long.valueOf(Runtime.getRuntime().maxMemory()));
+        mojangstatisticsgenerator.a("memory_free", Long.valueOf(Runtime.getRuntime().freeMemory()));
+        mojangstatisticsgenerator.a("java_version", System.getProperty("java.version"));
+        mojangstatisticsgenerator.a("cpu_cores", Integer.valueOf(Runtime.getRuntime().availableProcessors()));
+        mojangstatisticsgenerator.a("players_current", Integer.valueOf(this.getPlayerCount()));
+        mojangstatisticsgenerator.a("players_max", Integer.valueOf(this.getMaxPlayers()));
+        mojangstatisticsgenerator.a("players_seen", Integer.valueOf(this.getSeenPlayers().length));
+        mojangstatisticsgenerator.a("uses_auth", Boolean.valueOf(this.server.onlineMode));
+        mojangstatisticsgenerator.a("server_brand", this.server.getServerModName());
+        mojangstatisticsgenerator.a();
     }
 }

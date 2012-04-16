@@ -9,15 +9,10 @@ import org.bukkit.craftbukkit.entity.CraftItem;
 import org.bukkit.craftbukkit.TrigMath;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.entity.EntityCombustByEntityEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason;
 // CraftBukkit end
 
 public abstract class EntityHuman extends EntityLiving {
@@ -96,19 +91,19 @@ public abstract class EntityHuman extends EntityLiving {
         this.datawatcher.a(17, Byte.valueOf((byte) 0));
     }
 
-    public boolean L() {
+    public boolean M() {
         return this.d != null;
     }
 
-    public void M() {
+    public void N() {
         if (this.d != null) {
             this.d.b(this.world, this, this.e);
         }
 
-        this.N();
+        this.O();
     }
 
-    public void N() {
+    public void O() {
         this.d = null;
         this.e = 0;
         if (!this.world.isStatic) {
@@ -116,16 +111,16 @@ public abstract class EntityHuman extends EntityLiving {
         }
     }
 
-    public boolean O() {
-        return this.L() && Item.byId[this.d.id].d(this.d) == EnumAnimation.d;
+    public boolean P() {
+        return this.M() && Item.byId[this.d.id].d(this.d) == EnumAnimation.d;
     }
 
-    public void G_() {
+    public void F_() {
         if (this.d != null) {
             ItemStack itemstack = this.inventory.getItemInHand();
 
             if (itemstack != this.d) {
-                this.N();
+                this.O();
             } else {
                 if (this.e <= 25 && this.e % 4 == 0) {
                     this.b(itemstack, 5);
@@ -161,7 +156,7 @@ public abstract class EntityHuman extends EntityLiving {
             }
         }
 
-        super.G_();
+        super.F_();
         if (!this.world.isStatic && this.activeContainer != null && !this.activeContainer.b(this)) {
             this.closeInventory();
             this.activeContainer = this.defaultContainer;
@@ -258,11 +253,11 @@ public abstract class EntityHuman extends EntityLiving {
                 }
             }
 
-            this.N();
+            this.O();
         }
     }
 
-    protected boolean P() {
+    protected boolean Q() {
         return this.getHealth() <= 0 || this.isSleeping();
     }
 
@@ -271,12 +266,12 @@ public abstract class EntityHuman extends EntityLiving {
         this.activeContainer = this.defaultContainer;
     }
 
-    public void Q() {
+    public void R() {
         double d0 = this.locX;
         double d1 = this.locY;
         double d2 = this.locZ;
 
-        super.Q();
+        super.R();
         this.r = this.s;
         this.s = 0.0F;
         this.h(this.locX - d0, this.locY - d1, this.locZ - d2);
@@ -309,7 +304,7 @@ public abstract class EntityHuman extends EntityLiving {
 
         if (this.world.difficulty == 0 && this.getHealth() < this.getMaxHealth() && this.ticksLived % 20 * 12 == 0) {
             // CraftBukkit - added regain reason of "REGEN" for filtering purposes.
-            this.heal(1, RegainReason.REGEN);
+            this.heal(1, org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason.REGEN);
         }
 
         this.inventory.i();
@@ -395,7 +390,7 @@ public abstract class EntityHuman extends EntityLiving {
         return j > 0 && this.random.nextInt(j + 1) > 0 ? i : super.b_(i);
     }
 
-    public EntityItem R() {
+    public EntityItem S() {
         return this.a(this.inventory.splitStack(this.inventory.itemInHandIndex, 1), false);
     }
 
@@ -571,7 +566,7 @@ public abstract class EntityHuman extends EntityLiving {
 
                 if (entity instanceof EntityMonster || entity instanceof EntityArrow) {
                     if (this.world.difficulty == 0) {
-                        i = 0;
+                        return false; // CraftBukkit - i = 0 -> return false
                     }
 
                     if (this.world.difficulty == 1) {
@@ -582,10 +577,10 @@ public abstract class EntityHuman extends EntityLiving {
                         i = i * 3 / 2;
                     }
                 }
-
+                /* CraftBukkit start - Don't filter out 0 damage
                 if (i == 0) {
                     return false;
-                } else {
+                } else { CraftBukkit end */
                     Entity entity1 = entity;
 
                     if (entity instanceof EntityArrow && ((EntityArrow) entity).shooter != null) {
@@ -593,33 +588,12 @@ public abstract class EntityHuman extends EntityLiving {
                     }
 
                     if (entity1 instanceof EntityLiving) {
-                        // CraftBukkit start - this is here instead of EntityMonster because EntityLiving(s) that aren't monsters
-                        // also damage the player in this way. For example, EntitySlime.
-
-                        // We handle projectiles in their individual classes!
-                        boolean isProjectile = damagesource instanceof EntityDamageSourceIndirect && ((EntityDamageSourceIndirect) damagesource).getProximateDamageSource().getBukkitEntity() instanceof Projectile;
-
-                        if (!isProjectile) {
-                            org.bukkit.entity.Entity damager = ((Entity) entity1).getBukkitEntity();
-                            org.bukkit.entity.Entity damagee = this.getBukkitEntity();
-
-                            EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(damager, damagee, EntityDamageEvent.DamageCause.ENTITY_ATTACK, i);
-                            Bukkit.getPluginManager().callEvent(event);
-
-                            if (event.isCancelled() || event.getDamage() == 0) {
-                                return false;
-                            }
-
-                            i = event.getDamage();
-                        }
-                        // CraftBukkit end
-
                         this.a((EntityLiving) entity1, false);
                     }
 
                     this.a(StatisticList.x, i);
                     return super.damageEntity(damagesource, i);
-                }
+                //} // CraftBukkit
             }
         }
     }
@@ -648,7 +622,7 @@ public abstract class EntityHuman extends EntityLiving {
         }
     }
 
-    protected boolean C_() {
+    protected boolean C() {
         return false;
     }
 
@@ -662,7 +636,7 @@ public abstract class EntityHuman extends EntityLiving {
                 }
             }
 
-            if (!(entityliving instanceof EntityHuman) || this.C_()) {
+            if (!(entityliving instanceof EntityHuman) || this.C()) {
                 List list = this.world.a(EntityWolf.class, AxisAlignedBB.b(this.locX, this.locY, this.locZ, this.locX + 1.0D, this.locY + 1.0D, this.locZ + 1.0D).grow(16.0D, 4.0D, 16.0D));
                 Iterator iterator = list.iterator();
 
@@ -670,7 +644,7 @@ public abstract class EntityHuman extends EntityLiving {
                     Entity entity = (Entity) iterator.next();
                     EntityWolf entitywolf1 = (EntityWolf) entity;
 
-                    if (entitywolf1.isTamed() && entitywolf1.H() == null && this.name.equals(entitywolf1.getOwnerName()) && (!flag || !entitywolf1.isSitting())) {
+                    if (entitywolf1.isTamed() && entitywolf1.I() == null && this.name.equals(entitywolf1.getOwnerName()) && (!flag || !entitywolf1.isSitting())) {
                         entitywolf1.setSitting(false);
                         entitywolf1.setTarget(entityliving);
                     }
@@ -683,12 +657,12 @@ public abstract class EntityHuman extends EntityLiving {
         this.inventory.e(i);
     }
 
-    public int S() {
+    public int T() {
         return this.inventory.j();
     }
 
     protected void c(DamageSource damagesource, int i) {
-        if (!damagesource.ignoresArmor() && this.O()) {
+        if (!damagesource.ignoresArmor() && this.P()) {
             i = 1 + i >> 1;
         }
 
@@ -708,32 +682,33 @@ public abstract class EntityHuman extends EntityLiving {
 
     public void e(Entity entity) {
         if (!entity.b(this)) {
-            ItemStack itemstack = this.T();
+            ItemStack itemstack = this.U();
 
             if (itemstack != null && entity instanceof EntityLiving) {
+                if (this.abilities.canInstantlyBuild) itemstack = itemstack.cloneItemStack(); // CraftBukkit - if the player can instantly build, don't decrement the stack.
                 itemstack.a((EntityLiving) entity);
-                // CraftBukkit - bypass infinite items; <= 0 -> == 0
-                if (itemstack.count == 0) {
+                // CraftBukkit - bypass infinite items; <= 0 -> == 0, only remove items if not able to instantly build
+                if (itemstack.count == 0 && !this.abilities.canInstantlyBuild) {
                     itemstack.a(this);
-                    this.U();
+                    this.V();
                 }
             }
         }
     }
 
-    public ItemStack T() {
+    public ItemStack U() {
         return this.inventory.getItemInHand();
     }
 
-    public void U() {
+    public void V() {
         this.inventory.setItem(this.inventory.itemInHandIndex, (ItemStack) null);
     }
 
-    public double V() {
+    public double W() {
         return (double) (this.height - 0.5F);
     }
 
-    public void D() {
+    public void C_() {
         if (!this.t || this.u >= this.E() / 2 || this.u < 0) {
             this.u = -1;
             this.t = true;
@@ -765,27 +740,11 @@ public abstract class EntityHuman extends EntityLiving {
             }
 
             if (i > 0 || k > 0) {
-                boolean flag = this.fallDistance > 0.0F && !this.onGround && !this.t() && !this.aT() && !this.hasEffect(MobEffectList.BLINDNESS) && this.vehicle == null && entity instanceof EntityLiving;
+                boolean flag = this.fallDistance > 0.0F && !this.onGround && !this.t() && !this.aU() && !this.hasEffect(MobEffectList.BLINDNESS) && this.vehicle == null && entity instanceof EntityLiving;
 
                 if (flag) {
                     i += this.random.nextInt(i / 2 + 2);
                 }
-
-                // CraftBukkit start - Don't call the event when the entity is human since it will be called with damageEntity
-                if ((entity instanceof EntityLiving || entity instanceof EntityComplexPart || entity instanceof EntityEnderCrystal) && !(entity instanceof EntityHuman)) {
-                    org.bukkit.entity.Entity damager = this.getBukkitEntity();
-                    org.bukkit.entity.Entity damagee = (entity == null) ? null : entity.getBukkitEntity();
-
-                    EntityDamageByEntityEvent event = new EntityDamageByEntityEvent(damager, damagee, EntityDamageEvent.DamageCause.ENTITY_ATTACK, i);
-                    Bukkit.getPluginManager().callEvent(event);
-
-                    if (event.isCancelled() || event.getDamage() == 0) {
-                        return;
-                    }
-
-                    i = event.getDamage();
-                }
-                // CraftBukkit end
 
                 i += k;
                 boolean flag1 = entity.damageEntity(DamageSource.playerAttack(this), i);
@@ -819,14 +778,14 @@ public abstract class EntityHuman extends EntityLiving {
                     this.g(entity);
                 }
 
-                ItemStack itemstack = this.T();
+                ItemStack itemstack = this.U();
 
                 if (itemstack != null && entity instanceof EntityLiving) {
                     itemstack.a((EntityLiving) entity, this);
                     // CraftBukkit - bypass infinite items; <= 0 -> == 0
                     if (itemstack.count == 0) {
                         itemstack.a(this);
-                        this.U();
+                        this.V();
                     }
                 }
 
@@ -1076,8 +1035,8 @@ public abstract class EntityHuman extends EntityLiving {
 
     public void a(Statistic statistic, int i) {}
 
-    protected void ab() {
-        super.ab();
+    protected void ac() {
+        super.ac();
         this.a(StatisticList.u, 1);
         if (this.isSprinting()) {
             this.c(0.8F);
@@ -1116,7 +1075,7 @@ public abstract class EntityHuman extends EntityLiving {
                     this.a(StatisticList.q, i);
                     this.c(0.015F * (float) i * 0.01F);
                 }
-            } else if (this.aT()) {
+            } else if (this.aU()) {
                 i = Math.round(MathHelper.sqrt(d0 * d0 + d2 * d2) * 100.0F);
                 if (i > 0) {
                     this.a(StatisticList.m, i);
@@ -1182,7 +1141,7 @@ public abstract class EntityHuman extends EntityLiving {
         }
     }
 
-    public void ac() {
+    public void ad() {
         if (this.I > 0) {
             this.I = 10;
         } else {
@@ -1237,7 +1196,7 @@ public abstract class EntityHuman extends EntityLiving {
         return (flag || this.foodData.b()) && !this.abilities.isInvulnerable;
     }
 
-    public boolean af() {
+    public boolean ag() {
         return this.getHealth() > 0 && this.getHealth() < this.getMaxHealth();
     }
 
@@ -1284,4 +1243,6 @@ public abstract class EntityHuman extends EntityLiving {
     protected boolean g_() {
         return !this.abilities.isFlying;
     }
+
+    public void updateAbilities() {}
 }

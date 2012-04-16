@@ -21,9 +21,18 @@ public abstract class WorldGenerator {
     public void a(double d0, double d1, double d2) {}
 
     // CraftBukkit - change signature
+    protected void setType(BlockChangeDelegate world, int i, int j, int k, int l) {
+        this.setTypeAndData(world, i, j, k, l, 0);
+    }
+
+    // CraftBukkit - change signature
     protected void setTypeAndData(BlockChangeDelegate world, int i, int j, int k, int l, int i1) {
         if (this.a) {
-            ((World) world).setTypeIdAndData(i, j, k, l, i1); // CraftBukkit - force-cast to world to get it working
+            world.setTypeIdAndData(i, j, k, l, i1);
+        } else if (world instanceof World && ((World)world).getChunkAtWorldCoords(i, k).seenByPlayer) { // CraftBukkit
+            if (world.setRawTypeIdAndData(i, j, k, l, i1)) {
+                ((World)world).notify(i, j, k); // CraftBukkit - casty
+            }
         } else {
             world.setRawTypeIdAndData(i, j, k, l, i1);
         }

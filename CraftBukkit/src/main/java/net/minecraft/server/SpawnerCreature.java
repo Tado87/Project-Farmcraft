@@ -152,6 +152,9 @@ public final class SpawnerCreature {
                                                                 return i;
                                                             }
 
+                                                            // CraftBukkit - made slimes spawn less often in FLAT worlds.
+                                                            if (entityliving instanceof EntitySlime && world.worldData.getType() == WorldType.FLAT && world.random.nextInt(200) == 0) return 0;
+
                                                             entityliving.setPositionRotation((double) f, (double) f1, (double) f2, world.random.nextFloat() * 360.0F, 0.0F);
                                                             if (entityliving.canSpawn()) {
                                                                 ++j2;
@@ -198,6 +201,7 @@ public final class SpawnerCreature {
     }
 
     private static void a(EntityLiving entityliving, World world, float f, float f1, float f2) {
+        if (entityliving.dead) return; // CraftBukkit
         if (entityliving instanceof EntitySpider && world.random.nextInt(100) == 0) {
             EntitySkeleton entityskeleton = new EntitySkeleton(world);
 
@@ -213,7 +217,7 @@ public final class SpawnerCreature {
 
                 entityocelot.setPositionRotation((double) f, (double) f1, (double) f2, entityliving.yaw, 0.0F);
                 entityocelot.setAge(-24000);
-                world.addEntity(entityocelot);
+                world.addEntity(entityocelot, SpawnReason.NATURAL); // CraftBukkit - SpawnReason
             }
         }
     }
@@ -222,7 +226,7 @@ public final class SpawnerCreature {
         List list = biomebase.getMobs(EnumCreatureType.CREATURE);
 
         if (!list.isEmpty()) {
-            while (random.nextFloat() < biomebase.e()) {
+            while (random.nextFloat() < biomebase.f()) {
                 BiomeMeta biomemeta = (BiomeMeta) WeightedRandom.a(world.random, (Collection) list);
                 int i1 = biomemeta.b + random.nextInt(1 + biomemeta.c - biomemeta.b);
                 int j1 = i + random.nextInt(k);

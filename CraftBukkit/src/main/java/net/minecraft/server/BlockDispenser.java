@@ -132,8 +132,10 @@ public class BlockDispenser extends BlockContainer {
                     return;
                 }
 
-                // Actually remove the item
-                tileentitydispenser.splitStack(dispenseSlot, 1);
+                if (event.getItem().equals(bukkitItem)) {
+                    // Actually remove the item
+                    tileentitydispenser.splitStack(dispenseSlot, 1);
+                }
 
                 motX = event.getVelocity().getX();
                 motY = event.getVelocity().getY();
@@ -258,8 +260,12 @@ public class BlockDispenser extends BlockContainer {
                         }
 
                         itemstack.count -= i1;
-                        // CraftBukkit - make sure enchantments are copied over
-                        EntityItem entityitem = new EntityItem(world, (double) ((float) i + f), (double) ((float) j + f1), (double) ((float) k + f2), new ItemStack(itemstack.id, i1, itemstack.getData(), itemstack.getEnchantments()));
+                        EntityItem entityitem = new EntityItem(world, (double) ((float) i + f), (double) ((float) j + f1), (double) ((float) k + f2), new ItemStack(itemstack.id, i1, itemstack.getData()));
+
+                        if (itemstack.hasTag()) {
+                            entityitem.itemStack.setTag((NBTTagCompound) itemstack.getTag().clone());
+                        }
+
                         float f3 = 0.05F;
 
                         entityitem.motX = (double) ((float) this.a.nextGaussian() * f3);

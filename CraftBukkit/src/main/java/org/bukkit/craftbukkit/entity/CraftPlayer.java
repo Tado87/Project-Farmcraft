@@ -577,14 +577,6 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
         getHandle().getFoodData().foodLevel = value;
     }
 
-    public boolean getAllowFlight() {
-        return getHandle().itemInWorldManager.player.abilities.canFly;
-    }
-
-    public void setAllowFlight(boolean flight) {
-        getHandle().itemInWorldManager.player.abilities.canFly = flight;
-    }
-
     public Location getBedSpawnLocation() {
         World world = getServer().getWorld(getHandle().spawnWorld);
         if ((world != null) && (getHandle().getBed() != null)) {
@@ -695,6 +687,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
                 firstPlayed = data.getLong("firstPlayed");
                 lastPlayed = data.getLong("lastPlayed");
             }
+
+            if (data.hasKey("newExp")) {
+                EntityPlayer handle = getHandle();
+                handle.newExp = data.getInt("newExp");
+                handle.newTotalExp = data.getInt("newTotalExp");
+                handle.newLevel = data.getInt("newLevel");
+                handle.expToDrop = data.getInt("expToDrop");
+                handle.keepLevel = data.getBoolean("keepLevel");
+            }
         }
     }
 
@@ -704,6 +705,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
         }
 
         NBTTagCompound data = nbttagcompound.getCompound("bukkit");
+        EntityPlayer handle = getHandle();
+        data.setInt("newExp", handle.newExp);
+        data.setInt("newTotalExp", handle.newTotalExp);
+        data.setInt("newLevel", handle.newLevel);
+        data.setInt("expToDrop", handle.expToDrop);
+        data.setBoolean("keepLevel", handle.keepLevel);
         data.setLong("firstPlayed", getFirstPlayed());
         data.setLong("lastPlayed", System.currentTimeMillis());
     }
@@ -812,5 +819,31 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
 
     public void disconnect(String reason) {
         conversationTracker.abandonAllConversations();
+    }
+
+    public boolean isFlying() {
+        return getHandle().abilities.isFlying;
+    }
+
+    public void setFlying(boolean value) {
+        if (!getAllowFlight() && value) {
+            throw new IllegalArgumentException("Cannot make player fly if getAllowFlight() is false");
+        }
+
+        getHandle().abilities.isFlying = value;
+        getHandle().updateAbilities();
+    }
+
+    public boolean getAllowFlight() {
+        return getHandle().abilities.canFly;
+    }
+
+    public void setAllowFlight(boolean value) {
+        if (isFlying() && !value) {
+            getHandle().abilities.isFlying = false;
+        }
+
+        getHandle().abilities.canFly = value;
+        getHandle().updateAbilities();
     }
 }

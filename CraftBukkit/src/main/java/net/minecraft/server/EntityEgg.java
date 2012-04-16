@@ -2,7 +2,7 @@ package net.minecraft.server;
 
 // CraftBukkit start
 import org.bukkit.Location;
-import org.bukkit.entity.Animals;
+import org.bukkit.entity.Ageable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerEggThrowEvent;
@@ -23,13 +23,11 @@ public class EntityEgg extends EntityProjectile {
     }
 
     protected void a(MovingObjectPosition movingobjectposition) {
-        // CraftBukkit start
-        if (movingobjectposition.entity != null) {
-            if (org.bukkit.craftbukkit.event.CraftEventFactory.handleProjectileEvent((org.bukkit.entity.Projectile) this.getBukkitEntity(), movingobjectposition.entity, DamageSource.projectile(this, this.shooter), 0)) {
-                ; // Original code does nothing *yet*
-            }
+        if (movingobjectposition.entity != null && movingobjectposition.entity.damageEntity(DamageSource.projectile(this, this.shooter), 0)) {
+            ;
         }
 
+        // CraftBukkit start
         boolean hatching = !this.world.isStatic && this.random.nextInt(8) == 0;
         int numHatching = (this.random.nextInt(32) == 0) ? 4 : 1;
         if (!hatching) {
@@ -53,8 +51,8 @@ public class EntityEgg extends EntityProjectile {
             for (int k = 0; k < numHatching; k++) {
                 org.bukkit.entity.Entity entity = world.getWorld().spawn(new Location(world.getWorld(), this.locX, this.locY, this.locZ, this.yaw, 0.0F), hatchingType.getEntityClass(), SpawnReason.EGG);
 
-                if (entity instanceof Animals) {
-                    ((Animals) entity).setBaby();
+                if (entity instanceof Ageable) {
+                    ((Ageable) entity).setBaby();
                 }
             }
         }

@@ -27,11 +27,11 @@ public class CraftInventoryCustom extends CraftInventory {
 
     static class MinecraftInventory implements IInventory {
         private ItemStack[] items;
-        private int maxStack;
+        private int maxStack = MAX_STACK;
         private List<HumanEntity> viewers;
         private String title;
         private InventoryType type;
-        private InventoryHolder owner; // TODO: Constructors to set this
+        private InventoryHolder owner;
 
         public MinecraftInventory(InventoryHolder owner, InventoryType type) {
             this(owner, type.getDefaultSize(), type.getDefaultTitle());
@@ -41,7 +41,7 @@ public class CraftInventoryCustom extends CraftInventory {
         public MinecraftInventory(InventoryHolder owner, int size) {
             this(owner, size, "Chest");
         }
-        
+
         public MinecraftInventory(InventoryHolder owner, int size, String title) {
             this.items = new ItemStack[size];
             this.title = title;
@@ -66,7 +66,7 @@ public class CraftInventoryCustom extends CraftInventory {
                 this.setItem(i, null);
                 result = stack;
             } else {
-                result = new ItemStack(stack.id, j, stack.getData());
+                result = new ItemStack(stack.id, j, stack.getData(), stack.getEnchantments());
                 stack.count -= j;
             }
             this.update();
@@ -81,7 +81,7 @@ public class CraftInventoryCustom extends CraftInventory {
                 this.setItem(i, null);
                 result = stack;
             } else {
-                result = new ItemStack(stack.id, 1, stack.getData());
+                result = new ItemStack(stack.id, 1, stack.getData(), stack.getEnchantments());
                 stack.count -= 1;
             }
             return result;
@@ -89,6 +89,9 @@ public class CraftInventoryCustom extends CraftInventory {
 
         public void setItem(int i, ItemStack itemstack) {
             items[i] = itemstack;
+            if (itemstack != null && this.getMaxStackSize() > 0 && itemstack.count > this.getMaxStackSize()) {
+                itemstack.count = this.getMaxStackSize();
+            }
         }
 
         public String getName() {
@@ -97,6 +100,10 @@ public class CraftInventoryCustom extends CraftInventory {
 
         public int getMaxStackSize() {
             return maxStack;
+        }
+
+        public void setMaxStackSize(int size) {
+            maxStack = size;
         }
 
         public void update() {}
@@ -120,7 +127,7 @@ public class CraftInventoryCustom extends CraftInventory {
         public List<HumanEntity> getViewers() {
             return viewers;
         }
-        
+
         public InventoryType getType() {
             return type;
         }

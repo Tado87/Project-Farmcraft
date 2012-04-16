@@ -3,6 +3,7 @@ package net.minecraft.server;
 import java.util.ArrayList;
 import java.util.Random;
 // CraftBukkit start
+import org.bukkit.BlockChangeDelegate;
 import org.bukkit.Location;
 import org.bukkit.TreeType;
 import org.bukkit.block.BlockState;
@@ -76,6 +77,10 @@ public class BlockMushroom extends BlockFlower {
         }
     }
 
+    public boolean canPlace(World world, int i, int j, int k) {
+        return super.canPlace(world, i, j, k) && this.f(world, i, j, k);
+    }
+
     protected boolean d(int i) {
         return Block.n[i];
     }
@@ -109,7 +114,7 @@ public class BlockMushroom extends BlockFlower {
             worldgenhugemushroom = new WorldGenHugeMushroom(1);
         }
         if (worldgenhugemushroom != null && event != null) {
-            grown = worldgenhugemushroom.grow(world, random, i, j, k, event, itemstack, world.getWorld());
+            grown = worldgenhugemushroom.grow((BlockChangeDelegate)world, random, i, j, k, event, itemstack, world.getWorld());
             if (event.isFromBonemeal() && itemstack != null) {
                 --itemstack.count;
             }

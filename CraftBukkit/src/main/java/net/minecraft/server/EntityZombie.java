@@ -9,7 +9,7 @@ public class EntityZombie extends EntityMonster {
         this.texture = "/mob/zombie.png";
         this.bb = 0.23F;
         this.damage = 4;
-        this.ak().b(true);
+        this.al().b(true);
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalBreakDoor(this));
         this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityHuman.class, this.bb, false));
@@ -28,7 +28,7 @@ public class EntityZombie extends EntityMonster {
         return 20;
     }
 
-    public int S() {
+    public int T() {
         return 2;
     }
 
@@ -75,22 +75,20 @@ public class EntityZombie extends EntityMonster {
         return MonsterType.UNDEAD;
     }
 
-    protected void b(int i) {
+    // CraftBukkit start - return rare dropped item instead of dropping it
+    protected ItemStack b(int i) {
         switch (this.random.nextInt(4)) {
-        case 0:
-            this.b(Item.IRON_SWORD.id, 1);
-            break;
-
-        case 1:
-            this.b(Item.IRON_HELMET.id, 1);
-            break;
-
-        case 2:
-            this.b(Item.IRON_INGOT.id, 1);
-            break;
-
-        case 3:
-            this.b(Item.IRON_SPADE.id, 1);
+            case 0:
+                return new ItemStack(Item.IRON_SWORD.id, 1, 0);
+            case 1:
+                return new ItemStack(Item.IRON_HELMET.id, 1, 0);
+            case 2:
+                return new ItemStack(Item.IRON_INGOT.id, 1, 0);
+            case 3:
+                return new ItemStack(Item.IRON_SPADE.id, 1, 0);
+            default:
+                return null;
         }
     }
+    // CraftBukkit end
 }

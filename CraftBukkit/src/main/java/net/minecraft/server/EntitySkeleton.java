@@ -2,9 +2,7 @@ package net.minecraft.server;
 
 // CraftBukkit start
 import org.bukkit.craftbukkit.event.CraftEventFactory;
-import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.craftbukkit.inventory.CraftItemStack;
 // CraftBukkit end
 
 public class EntitySkeleton extends EntityMonster {
@@ -23,7 +21,7 @@ public class EntitySkeleton extends EntityMonster {
         this.goalSelector.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
         this.goalSelector.a(6, new PathfinderGoalRandomLookaround(this));
         this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, false));
-        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 16.0F, 0, false));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 16.0F, 0, true));
     }
 
     public boolean c_() {
@@ -55,7 +53,14 @@ public class EntitySkeleton extends EntityMonster {
             float f = this.b(1.0F);
 
             if (f > 0.5F && this.world.isChunkLoaded(MathHelper.floor(this.locX), MathHelper.floor(this.locY), MathHelper.floor(this.locZ)) && this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F) {
-                this.setOnFire(8);
+                // CraftBukkit start
+                org.bukkit.event.entity.EntityCombustEvent event = new org.bukkit.event.entity.EntityCombustEvent(this.getBukkitEntity(), 8);
+                this.world.getServer().getPluginManager().callEvent(event);
+
+                if (!event.isCancelled()) {
+                    this.setOnFire(event.getDuration());
+                }
+                // CraftBukkit end
             }
         }
 
@@ -93,18 +98,32 @@ public class EntitySkeleton extends EntityMonster {
             loot.add(new org.bukkit.inventory.ItemStack(org.bukkit.Material.BONE, count));
         }
 
-        org.bukkit.craftbukkit.event.CraftEventFactory.callEntityDeathEvent(this, loot);
+        // Determine rare item drops and add them to the loot
+        if (this.lastDamageByPlayerTime > 0) {
+            int k = this.random.nextInt(200) - i;
+
+            if (k < 5) {
+                ItemStack itemstack = this.b(k <= 0 ? 1 : 0);
+                if (itemstack != null) {
+                    loot.add(new CraftItemStack(itemstack));
+                }
+            }
+        }
+
+        CraftEventFactory.callEntityDeathEvent(this, loot);
         // CraftBukkit end
     }
 
-    protected void b(int i) {
+    // CraftBukkit start - return rare dropped item instead of dropping it
+    protected ItemStack b(int i) {
         if (i > 0) {
             ItemStack itemstack = new ItemStack(Item.BOW);
 
             EnchantmentManager.a(this.random, itemstack, 5);
-            this.a(itemstack, 0.0F);
+            return itemstack;
         } else {
-            this.b(Item.BOW.id, 1);
+            return new ItemStack(Item.BOW.id, 1, 0);
         }
     }
+    // CraftBukkit end
 }

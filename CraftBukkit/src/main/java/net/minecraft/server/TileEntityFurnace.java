@@ -6,11 +6,9 @@ import java.util.List;
 
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import org.bukkit.craftbukkit.entity.CraftHumanEntity;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
 // CraftBukkit end
 
 public class TileEntityFurnace extends TileEntity implements IInventory {
@@ -22,6 +20,7 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
 
     // CraftBukkit start
     private int lastTick = (int) (System.currentTimeMillis() / 50);
+    private int maxStack = MAX_STACK;
     public List<HumanEntity> transaction = new ArrayList<HumanEntity>();
 
     public ItemStack[] getContents() {
@@ -38,6 +37,10 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
 
     public List<HumanEntity> getViewers() {
         return transaction;
+    }
+
+    public void setMaxStackSize(int size) {
+        maxStack = size;
     }
     // CraftBukkit end
 
@@ -111,7 +114,7 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
 
         this.burnTime = nbttagcompound.getShort("BurnTime");
         this.cookTime = nbttagcompound.getShort("CookTime");
-        this.ticksForCurrentFuel = this.fuelTime(this.items[1]);
+        this.ticksForCurrentFuel = fuelTime(this.items[1]);
     }
 
     public void b(NBTTagCompound nbttagcompound) {
@@ -134,7 +137,7 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
     }
 
     public int getMaxStackSize() {
-        return 64;
+        return maxStack; // CraftBukkit
     }
 
     public boolean isBurning() {
@@ -172,7 +175,7 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
             if (this.burnTime <= 0 && this.canBurn() && this.items[1] != null) { // CraftBukkit - == to <=
                 CraftItemStack fuel = new CraftItemStack(this.items[1]);
 
-                FurnaceBurnEvent furnaceBurnEvent = new FurnaceBurnEvent(this.world.getWorld().getBlockAt(this.x, this.y, this.z), fuel, this.fuelTime(this.items[1]));
+                FurnaceBurnEvent furnaceBurnEvent = new FurnaceBurnEvent(this.world.getWorld().getBlockAt(this.x, this.y, this.z), fuel, fuelTime(this.items[1]));
                 this.world.getServer().getPluginManager().callEvent(furnaceBurnEvent);
 
                 if (furnaceBurnEvent.isCancelled()) {
@@ -262,7 +265,7 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
         }
     }
 
-    private int fuelTime(ItemStack itemstack) {
+    public static int fuelTime(ItemStack itemstack) {
         if (itemstack == null) {
             return 0;
         } else {
@@ -270,6 +273,10 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
 
             return i < 256 && Block.byId[i].material == Material.WOOD ? 300 : (i == Item.STICK.id ? 100 : (i == Item.COAL.id ? 1600 : (i == Item.LAVA_BUCKET.id ? 20000 : (i == Block.SAPLING.id ? 100 : (i == Item.BLAZE_ROD.id ? 2400 : 0)))));
         }
+    }
+
+    public static boolean isFuel(ItemStack itemstack) {
+        return fuelTime(itemstack) > 0;
     }
 
     public boolean a(EntityHuman entityhuman) {
